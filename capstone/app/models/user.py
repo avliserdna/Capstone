@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
     authorship = db.relationship('Post', back_populates='post_author', cascade='all, delete')
     owner_comment = db.relationship('Comment', backpopulates='comment_owner', cascade='all, delete')
     response_user = db.relationship('LikeDislike', backpopulates='user_response', cascade='all, delete')
+
     @property
     def password(self):
         return self.hashed_password
