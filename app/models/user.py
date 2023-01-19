@@ -18,8 +18,8 @@ class User(db.Model, UserMixin):
     admin = db.Column(db.Boolean, nullable=True)
 
     authorship = db.relationship('Post', back_populates='post_author', cascade='all, delete')
-    owner_comment = db.relationship('Comment', backpopulates='comment_owner', cascade='all, delete')
-    response_user = db.relationship('LikeDislike', backpopulates='user_response', cascade='all, delete')
+    owner_comment = db.relationship('Comment', back_populates='comment_owner', cascade='all, delete')
+    response_user = db.relationship('LikeDislike', back_populates='user_response', cascade='all, delete')
 
     @property
     def password(self):
