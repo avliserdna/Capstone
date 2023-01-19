@@ -6,4 +6,5 @@ from .teamsuggestion import TeamSuggestion
 from .likedislike import LikeDislike
 from .comment import Comment
 from .character import Character
+from .profile import Profile
 from .db import environment, SCHEMA
