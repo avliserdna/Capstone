@@ -11,6 +11,7 @@ class Map(db.Model):
     description = db.Column(db.String(255), nullable=False)
     image = db.Column(db.String(255), nullable=True)
 
+    map_team = db.relationship('Map', back_populates='team')
     def to_dict(self):
         return {
             'id': self.id,
