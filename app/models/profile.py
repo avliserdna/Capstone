@@ -9,7 +9,7 @@ class Profile(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     character_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("characters.id")), nullable=False)
     username = db.Column(db.String(20), nullable=False)
-    about_me = db.Column(db.String(255), nullable=False)
+    about_me = db.Column(db.String(255), nullable=True)
 
     profile_user = db.relationship('User', back_populates='user_profile')
     profile_character = db.relationship('character', back_populates='character_profile')

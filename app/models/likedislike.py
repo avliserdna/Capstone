@@ -9,7 +9,7 @@ class LikeDislike(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     comment_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("comments.id")), nullable=False)
     like = db.Column(db.Boolean, nullable=True)
-    dislike = db.Column(db.Boolean, nullable=False)
+    dislike = db.Column(db.Boolean, nullable=True)
 
     user_response = db.relationship('User', back_populates='response_user')
     response_comment = db.relationship('Comment', back_populates='comment_response')
