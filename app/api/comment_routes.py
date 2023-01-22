@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
-from app.models import Comment, db
-from app.forms import CommentForm
+from app.models import Comment, db, LikeDislike
+from app.forms import CommentForm, LikeDislikeForm
 
 comment_routes = Blueprint('comments', __name__)
 
@@ -24,3 +24,20 @@ def delete_comment(id):
     db.session.delete(comment)
     db.session.commit()
     return {"message": "deleted successfully"}
+
+@comment_routes.routes('/<int:id>', method=['POST'])
+@login_required
+def react_comment(id):
+    current_user_id = int(current_user.get_id())
+    form = LikeDislikeForm()
+
+    react = LikeDislike(
+        comment_id = id,
+        user_id = current_user_id,
+        like = form.data['like'],
+        dislike = form.data['dislike']
+    )
+
+    db.session.add(react)
+    db.session.commit()
+    return react.to_dict()
