@@ -16,6 +16,7 @@ def update_comment(id):
     db.session.commit(comment)
     return comment.to_dict()
 
+# Delete comment
 @comment_routes.route('/<int:id>', method=["DELETE"])
 @login_required
 def delete_comment(id):

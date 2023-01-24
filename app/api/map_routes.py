@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
-from app.models import Map, db
+from app.models import Map, db, TeamSuggestion
 from app.forms import MapForm
 
 map_routes = Blueprint('maps', __name__)
@@ -55,3 +55,13 @@ def delete_map(id):
     db.session.commit()
 
     return {"message": "deleted successfully"}
+
+@map_routes.route('/<int:id>', method=['POST'])
+def suggest_character(id):
+    team_suggestions_data = request.json
+
+    new_team = TeamSuggestion(**team_suggestions_data, map_id = id, user_id = current_user.id)
+    db.session.add(new_team)
+    db.session.commit()
+
+    return new_team.to_dict()
