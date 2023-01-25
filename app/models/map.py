@@ -11,7 +11,8 @@ class Map(db.Model):
     description = db.Column(db.String(255), nullable=False)
     image = db.Column(db.String(255), nullable=True)
 
-    map_team = db.relationship('Map', back_populates='team_map', cascade='all, delete')
+    map_team = db.relationship('TeamSuggestion', back_populates='team_map', cascade='all, delete')
+    map_posted = db.relationship('PostedMap', back_populates='posted_map')
     def to_dict(self):
         return {
             'id': self.id,

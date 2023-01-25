@@ -7,4 +7,5 @@ from .likedislike import LikeDislike
 from .comment import Comment
 from .character import Character
 from .profile import Profile
+from .postedmap import PostedMap
 from .db import environment, SCHEMA

@@ -65,3 +65,6 @@ def suggest_character(id):
     db.session.commit()
 
     return new_team.to_dict()
+
+# Map = Team Suggestion = Different = User
+#

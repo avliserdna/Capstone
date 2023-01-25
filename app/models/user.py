@@ -22,6 +22,7 @@ class User(db.Model, UserMixin):
     response_user = db.relationship('LikeDislike', back_populates='user_response', cascade='all, delete')
     user_team = db.relationship('TeamSuggestion', back_populates='team_user', cacade='all, delete')
     user_profile = db.relationship('Profile', back_populates='profile_user', cascade='all, delete')
+    poster_map = db.relationship('PostedMap', back_populates='map_poster', cascade='all,delete')
 
     @property
     def password(self):
