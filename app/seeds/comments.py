@@ -9,7 +9,7 @@ def seed_comments():
     )
 
     comment3 = Comment(
-        user_id = 4, post_id= 1, body="you look rocks?"
+        user_id = 4, post_id= 1, body="you like rocks?"
     )
 
     comment4 = Comment(
@@ -18,6 +18,10 @@ def seed_comments():
 
     comment5 = Comment(
         user_id=2, post_id =2, body="If you use Lappland, you can silence the explosions of the spiders"
+    )
+
+    comment6 = Comment(
+        user_id=4, post_id=3, body="just use surtr"
     )
 
 

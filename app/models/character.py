@@ -7,6 +7,7 @@ class Character(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    name= db.Column(db.string(255), nullable=False)
     rarity = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(255), nullable=False)
     archetype = db.Column(db.String(255), nullable=False)
