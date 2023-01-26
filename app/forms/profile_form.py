@@ -9,5 +9,5 @@ def check_user_len(form, field):
         raise ValidationError('Username is greater than 20 characters.')
 
 class ProfileForm(FlaskForm):
-    username = StringField('username', validators=[DataRequired, ])
+    username = StringField('username', validators=[DataRequired()])
     about_me = StringField('about_me')

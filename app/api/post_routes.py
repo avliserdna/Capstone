@@ -64,7 +64,7 @@ def get_post_comments(id):
     return {comment.id: comment.to_dict() for comment in comments}
 
 # Post a comment
-@post_routes.route('/<int:id>/comments', method=['POST'])
+@post_routes.route('/<int:id>/comments', methods=['POST'])
 @login_required
 def create_comment(id):
     current_user_id = int(current_user.get_id())

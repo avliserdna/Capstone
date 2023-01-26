@@ -6,7 +6,7 @@ from app.forms import CommentForm, LikeDislikeForm
 comment_routes = Blueprint('comments', __name__)
 
 # Edit Comment
-@comment_routes.route('/<int:id>', method=["PUT"])
+@comment_routes.route('/<int:id>', methods=["PUT"])
 @login_required
 def update_comment(id):
     form = CommentForm()
@@ -17,7 +17,7 @@ def update_comment(id):
     return comment.to_dict()
 
 # Delete comment
-@comment_routes.route('/<int:id>', method=["DELETE"])
+@comment_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_comment(id):
     comment = Comment.query.get(id)
@@ -27,7 +27,7 @@ def delete_comment(id):
     return {"message": "deleted successfully"}
 
 #First Time Reaction for Like-Dislike
-@comment_routes.routes('/<int:id>', method=['POST'])
+@comment_routes.route('/<int:id>', methods=['POST'])
 @login_required
 def react_comment(id):
     current_user_id = int(current_user.get_id())
