@@ -28,7 +28,7 @@ def seed_like_dislikes():
     db.session.add(react6)
     db.session.commit()
 
-def undo_lik_dislikes():
+def undo_like_dislikes():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.likes_dislikes RESTART IDENTITY CASCADE;")
     else:

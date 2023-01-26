@@ -8,7 +8,7 @@ def seed_profiles():
     db.session.add(profile1)
     db.session.commit()
 
-def undo_posts():
+def undo_profiles():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.profiles RESTART IDENTITY CASCADE;")
     else:
