@@ -7,6 +7,14 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.character_routes import character_routes
+from .api.comment_routes import comment_routes
+from .api.likedislike_routes import likedislike_routes
+from .api.map_routes import map_routes
+from .api.post_routes import post_routes
+from .api.profile_routes import profile_routes
+from .api.team_suggestions_routes import team_suggestion_routes
+
 from .seeds import seed_commands
 from .config import Config
 
@@ -28,6 +36,13 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(character_routes, url_prefix='/api/characters')
+app.register_blueprint(comment_routes, url_prefix='/api/comments')
+app.register_blueprint(likedislike_routes, url_prefix='/api/likedislikes')
+app.register_blueprint(map_routes, url_prefix='/api/maps')
+app.register_blueprint(post_routes, url_prefix='/api/posts')
+app.register_blueprint(profile_routes, url_prefix='/api/profiles')
+app.register_blueprint(team_suggestion_routes, url_prefix='/api/teamsuggestions')
 db.init_app(app)
 Migrate(app, db)
 

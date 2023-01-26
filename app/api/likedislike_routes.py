@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from app.models import LikeDislike, db
 from app.forms import LikeDislikeForm
 
-likedislike_routes = Blueprint('likedislikes', __name__)
+likedislike_routes = Blueprint('like_dislikes', __name__)
 
 # Get all Like/Dislikes
 @likedislike_routes.route('/')
