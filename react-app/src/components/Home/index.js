@@ -19,8 +19,11 @@ const AllPost = () => {
                 {posts?.map((post) => (
                     <>
                         <div>
-                            <h2>{post.title}</h2>
-                            <p>{post.body}</p>
+
+                            <NavLink to={`/posts/${post.id}`}>
+                                <h2>{post.title}</h2>
+                            </NavLink>
+                            {/* <p>{post.body}</p> */}
                         </div>
                     </>
                 )

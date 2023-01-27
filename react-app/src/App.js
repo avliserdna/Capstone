@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import AllPost from './components/Home';
+import PostView from './components/Post/PostPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -43,6 +44,9 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <AllPost />
+        </Route>
+        <Route path='/posts/:postId'>
+          <PostView />
         </Route>
       </Switch>
     </BrowserRouter>
