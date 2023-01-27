@@ -59,7 +59,7 @@ export const getSinglePost = (id) => async (dispatch) => {
 }
 
 export const editPost = (id, postData) => async (dispatch) => {
-    const response = await fetch(`/api/posts${id}`, {
+    const response = await fetch(`/api/posts/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -86,7 +86,7 @@ export default function postReducer(state = {}, action) {
     const newState = { ...state }
     switch (action.type) {
         case GET_POST:
-            return action.biz
+            return action.post
         case ADD_POST:
             newState[action.post.id] = action.post;
             return newState
