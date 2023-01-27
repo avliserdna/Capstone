@@ -12,7 +12,7 @@ class Profile(db.Model):
     about_me = db.Column(db.String(255), nullable=True)
 
     profile_user = db.relationship('User', back_populates='user_profile')
-    profile_character = db.relationship('character', back_populates='character_profile')
+    profile_character = db.relationship('Character', back_populates='character_profile')
 
     def to_dict(self):
         return {

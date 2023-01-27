@@ -32,7 +32,7 @@ def seed_team_suggestions():
     db.session.add(team_suggest5)
     db.session.add(team_suggest6)
     db.session.add(team_suggest7)
-    db.commit()
+    db.session.commit()
 
 def undo_team_suggestions():
     if environment == "production":

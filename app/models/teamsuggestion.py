@@ -13,7 +13,7 @@ class TeamSuggestion(db.Model):
 
     team_user = db.relationship('User', back_populates='user_team')
     team_map = db.relationship('Map', back_populates='map_team')
-    team_character = db.relationship('Character', back_populates='character_team')
+    team_characters = db.relationship('Character', back_populates='character_team')
 
     def to_dict(self):
         return {
