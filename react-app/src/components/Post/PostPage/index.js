@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { getSinglePost } from "../../../store/post";
@@ -11,13 +11,13 @@ const PostView = () => {
 
     useEffect(() => {
         dispatch(getSinglePost(postId))
-    }, [dispatch])
+    }, [dispatch,])
 
     return (
         <>
             <div className="post-container">
                 <h2>{post?.title}</h2>
-                <body>{post?.body}</body>
+                <body dangerouslySetInnerHTML={{ __html: post?.body }} />
             </div>
         </>
     )
