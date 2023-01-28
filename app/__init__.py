@@ -14,6 +14,7 @@ from .api.map_routes import map_routes
 from .api.post_routes import post_routes
 from .api.profile_routes import profile_routes
 from .api.team_suggestions_routes import team_suggestion_routes
+from api.postedmap_routes import posted_map_routes
 
 from .seeds import seed_commands
 from .config import Config
@@ -43,6 +44,7 @@ app.register_blueprint(map_routes, url_prefix='/api/maps')
 app.register_blueprint(post_routes, url_prefix='/api/posts')
 app.register_blueprint(profile_routes, url_prefix='/api/profiles')
 app.register_blueprint(team_suggestion_routes, url_prefix='/api/teamsuggestions')
+app.register_blueprint(posted_map_routes, url_previx='/api/postedmaps')
 db.init_app(app)
 Migrate(app, db)
 
