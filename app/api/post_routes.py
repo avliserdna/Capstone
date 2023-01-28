@@ -6,7 +6,7 @@ from app.forms import PostForm, CommentForm
 post_routes = Blueprint('posts', __name__)
 
 # Get All Posts
-@post_routes.route('/',methods=["GET"])
+@post_routes.route('',methods=["GET"])
 def get_all_posts():
     posts = Post.query.all()
     return {post.id: post.to_dict() for post in posts}
@@ -19,7 +19,7 @@ def get_a_post(id):
     return post.to_dict()
 
 # Create Post
-@post_routes.route('/', methods=["POST"])
+@post_routes.route('', methods=["POST"])
 @login_required
 def create_post():
     post_data = request.json

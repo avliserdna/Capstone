@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
-import { createPost } from "../../../store/post";
+import { editPost } from "../../../store/post";
 import ReactQuill from 'react-quill'
 import 'quill/dist/quill.snow.css'
 
 const PostForm = () => {
+    d
     const dispatch = useDispatch()
     const history = useHistory()
     const sessionUser = useSelector((state) => state.session.user)

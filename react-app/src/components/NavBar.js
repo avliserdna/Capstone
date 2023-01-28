@@ -1,9 +1,11 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
 
 const NavBar = () => {
+  const sessionUser = useSelector((state) => state.session.user)
   return (
     <nav>
       <ul>
@@ -27,6 +29,13 @@ const NavBar = () => {
             Users
           </NavLink>
         </li>
+        {
+          sessionUser?.author ? <li>
+            <NavLink to="/new/post" exact={true} activeClassName='active'>
+              Create New Post
+            </NavLink>
+          </li> : null
+        }
         <li>
           <LogoutButton />
         </li>

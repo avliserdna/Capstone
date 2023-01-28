@@ -46,10 +46,10 @@ function App() {
         <Route path='/' exact={true} >
           <AllPost />
         </Route>
-        <Route path='/posts/:postId'>
+        <Route path='/posts/:postId' exact={true}>
           <PostView />
         </Route>
-        <Route path='/forms'>
+        <Route path='/new/post' exact={true}>
           <PostForm />
         </Route>
       </Switch>

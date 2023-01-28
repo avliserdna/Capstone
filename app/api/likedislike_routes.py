@@ -6,7 +6,7 @@ from app.forms import LikeDislikeForm
 likedislike_routes = Blueprint('likes_dislikes', __name__)
 
 # Get all Like/Dislikes
-@likedislike_routes.route('/')
+@likedislike_routes.route('')
 def get_all_likedislikes():
     likedislikes = LikeDislike.query.all()
     return {likedislike.id: likedislikes.to_dict() for likedislike in likedislikes}

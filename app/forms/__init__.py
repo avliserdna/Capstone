@@ -6,3 +6,4 @@ from .map_form import MapForm
 from .post_form import PostForm
 from .profile_form import ProfileForm
 from .team_suggestion_form import TeamSuggestionForm
+from .postedmap_form import PostedMapForm

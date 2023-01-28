@@ -12,7 +12,7 @@ def team_suggestions():
     team_suggestions = TeamSuggestion.query.all()
     return {team_suggestion.id: team_suggestion.to_dict() for team_suggestion in team_suggestions}
 
-@team_suggestion_routes.route('/', methods=['POST'])
+@team_suggestion_routes.route('', methods=['POST'])
 @login_required
 def add_team_suggestion():
     team_suggestions_data = request.json
