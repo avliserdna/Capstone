@@ -10,6 +10,11 @@ def get_posted_maps():
     posted_maps = PostedMap.query.all()
     return {posted_map.id: posted_map.to_dict() for posted_map in posted_maps}
 
+@posted_map_routes.route('/<int:id>', methods=['GET'])
+def get_posted_map(id):
+    posted_map = PostedMap.query.get(id)
+    return posted_map.to_dict()
+
 @posted_map_routes.route('/', methods=['POST'])
 @login_required
 def create_posted_map():
