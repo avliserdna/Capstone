@@ -13,7 +13,7 @@ def get_character(id):
 
 #Get All characters
 
-@character_routes.route('/')
+@character_routes.route('')
 def get_all_characters():
     characters = Character.query.all()
     return {character.id: character.to_dict() for character in characters}

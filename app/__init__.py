@@ -14,7 +14,7 @@ from .api.map_routes import map_routes
 from .api.post_routes import post_routes
 from .api.profile_routes import profile_routes
 from .api.team_suggestions_routes import team_suggestion_routes
-from api.postedmap_routes import posted_map_routes
+from .api.postedmap_routes import posted_map_routes
 
 from .seeds import seed_commands
 from .config import Config

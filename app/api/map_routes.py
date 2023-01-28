@@ -6,7 +6,7 @@ from app.forms import MapForm
 map_routes = Blueprint('maps', __name__)
 
 # Get All Maps
-@map_routes.route('')
+@map_routes.route('/')
 def get_all_maps():
     maps = Map.query.all()
     return {map.id: map.to_dict() for map in maps}
@@ -19,7 +19,7 @@ def get_a_map(id):
     return map.to_dict()
 
 # Post a Map
-@map_routes.route('', methods=['POST'])
+@map_routes.route('/', methods=['POST'])
 @login_required
 def create_a_map():
     map_data = request.json

@@ -32,13 +32,13 @@ export const updatePost = (post) => {
 }
 
 export const getPosts = () => async (dispatch) => {
-    const response = await fetch(`/api/posts`)
+    const response = await fetch(`/api/posts/`)
     const postData = await response.json();
     dispatch(getPost(postData))
 }
 
 export const createPost = (postData) => async (dispatch) => {
-    const response = await fetch("/api/posts", {
+    const response = await fetch("/api/posts/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

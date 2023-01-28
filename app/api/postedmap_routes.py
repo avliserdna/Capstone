@@ -5,12 +5,12 @@ from app.forms import PostedMapForm
 
 posted_map_routes = Blueprint('posted_maps', __name__)
 
-@posted_map_routes.route('', methods=['GET'])
+@posted_map_routes.route('/', methods=['GET'])
 def get_posted_maps():
     posted_maps = PostedMap.query.all()
     return {posted_map.id: posted_map.to_dict() for posted_map in posted_maps}
 
-@posted_map_routes.route('', methods=['POST'])
+@posted_map_routes.route('/', methods=['POST'])
 @login_required
 def create_posted_map():
     posted_map_data = request.json
