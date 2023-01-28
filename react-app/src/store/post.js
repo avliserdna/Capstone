@@ -32,7 +32,7 @@ export const updatePost = (post) => {
 }
 
 export const getPosts = () => async (dispatch) => {
-    const response = await fetch(`/api/posts`)
+    const response = await fetch(`/api/posts/`)
     const postData = await response.json();
     dispatch(getPost(postData))
 }

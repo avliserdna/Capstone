@@ -6,7 +6,7 @@ from app.forms import PostForm, CommentForm
 post_routes = Blueprint('posts', __name__)
 
 # Get All Posts
-@post_routes.route('/')
+@post_routes.route('/',methods=["GET"])
 def get_all_posts():
     posts = Post.query.all()
     return {post.id: post.to_dict() for post in posts}

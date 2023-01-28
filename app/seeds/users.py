@@ -8,7 +8,7 @@ def seed_users():
     kyostinv = User(
         username='kyostinv', email='kyostinv@arknights.io', password='guardknights', profile_pic = 'image', author= True, admin=False)
     zigor = User(
-        username='Zigor', email='Zigor@arknights.io', password='password', profile_pic='image', author=True)
+        username='Zigor', email='Zigor@arknights.io', password='password', profile_pic='image', author=True, admin=True)
     frostbyte6 = User(
         username='Frostbyte6', email='Frostbyte6@arknights.io', password='surtrqueen', profile_pic='image', author=True, admin= True)
     db.session.add(demo)

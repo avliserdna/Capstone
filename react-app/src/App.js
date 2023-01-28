@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import AllPost from './components/Home';
 import PostView from './components/Post/PostPage';
+import PostForm from './components/Post/PostForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,6 +48,9 @@ function App() {
         </Route>
         <Route path='/posts/:postId'>
           <PostView />
+        </Route>
+        <Route path='/forms'>
+          <PostForm />
         </Route>
       </Switch>
     </BrowserRouter>
