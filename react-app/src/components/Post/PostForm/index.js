@@ -22,11 +22,12 @@ const PostForm = () => {
         if (sessionUser) {
             setUserId(sessionUser?.id)
             console.log("success")
+            //user_id =: userId
             const payload = {
-                user_id: userId,
                 title: title,
                 body: body
             }
+            console.log(userId)
             console.log(body)
             const newPost = dispatch(createPost(payload))
 

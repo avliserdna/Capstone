@@ -23,8 +23,7 @@ def get_a_post(id):
 @login_required
 def create_post():
     post_data = request.json
-
-    new_post = Post(**post_data, user_id=current_user.id)
+    new_post = Post(**post_data, author_id=current_user.id)
 
     db.session.add(new_post)
     db.session.commit()
