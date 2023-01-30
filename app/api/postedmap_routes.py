@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from app.models import PostedMap, db
 from app.forms import PostedMapForm
 
-posted_map_routes = Blueprint('posted_maps', __name__)
+posted_map_routes = Blueprint('postedmaps', __name__)
 
 @posted_map_routes.route('/', methods=['GET'])
 def get_posted_maps():

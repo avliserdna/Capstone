@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class PostedMap(db.Model):
-    __tablename__ = "posted_maps"
+    __tablename__ = "postedmaps"
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 

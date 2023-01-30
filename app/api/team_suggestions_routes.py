@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from app.models import TeamSuggestion, db
 from app.forms import TeamSuggestionForm
 
-team_suggestion_routes = Blueprint('team_suggestions', __name__)
+team_suggestion_routes = Blueprint('teamsuggestions', __name__)
 #    current_user_id = int(current_user.get_id())
 #     team_suggestions_data = request.json
 @team_suggestion_routes.route('/')

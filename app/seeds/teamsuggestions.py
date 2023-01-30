@@ -36,8 +36,8 @@ def seed_team_suggestions():
 
 def undo_team_suggestions():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.team_suggestions RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.teamsuggestions RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute("DELETE FROM team_suggestions")
+        db.session.execute("DELETE FROM teamsuggestions")
 
     db.session.commit()

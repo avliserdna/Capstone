@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class LikeDislike(db.Model):
-    __tablename__ = "likes_dislikes"
+    __tablename__ = "likesdislikes"
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 

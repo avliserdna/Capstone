@@ -20,8 +20,8 @@ def seed_posted_maps():
 
 def undo_posted_maps():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.posted_maps RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.postedmaps RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute("DELETE FROM posted_maps")
+        db.session.execute("DELETE FROM postedmaps")
 
     db.session.commit()
