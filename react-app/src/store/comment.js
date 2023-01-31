@@ -37,6 +37,13 @@ export const getAllComments = () => async (dispatch) => {
     dispatch(loadComment(commentData))
 }
 
+export const getPostComments = (postId) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${postId}/comments`)
+    const commentData = await response.json();
+    console.log(commentData, "<=== COMMENT DATA")
+    dispatch(loadComment(commentData))
+}
+
 export const getComment = (id) => async (dispatch) => {
     const response = await fetch(`/api/comments/${id}`)
     const commentData = await response.json();
@@ -74,7 +81,7 @@ export const updateComment = (commentId, commentData) => async (dispatch) => {
 }
 
 export const removeComment = (commentId) => async (dispatch) => {
-    const repsonse = await fetch(`/api/comments/${commentId}`, {
+    const response = await fetch(`/api/comments/${commentId}`, {
         method: "DELETE"
     })
 

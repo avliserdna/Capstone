@@ -24,7 +24,7 @@ export const editPostedMap = (postedMap) => {
     }
 }
 
-export const deletePostedMap = (map) => {
+export const deletePostedMap = (postedMap) => {
     return {
         type: REMOVE_POSTED_MAP,
         postedMap
@@ -75,7 +75,7 @@ export const updatePostedMap = (postedMapId, postMapData) => async (dispatch) =>
 }
 
 export const deletePostMapData = (postMapId) => async (dispatch) => {
-    const response = await fetch(`/api/postedmaps/${postedMapId}`, {
+    const response = await fetch(`/api/postedmaps/${postMapId}`, {
         method: "DELETE"
     })
 

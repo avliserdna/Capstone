@@ -12,6 +12,7 @@ import AllPost from './components/Home';
 import PostView from './components/Post/PostPage';
 import PostForm from './components/Post/PostForm';
 
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -48,6 +49,9 @@ function App() {
         </Route>
         <Route path='/posts/:postId' exact={true}>
           <PostView />
+        </Route>
+        <Route path='/posts/:postId/edit' exact={true}>
+
         </Route>
         <Route path='/new/post' exact={true}>
           <PostForm />

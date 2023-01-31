@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { getPosts } from "../../store/post";
+import { getAllLikesDislikes } from "../../store/likesdislikes";
 
 const AllPost = () => {
     const dispatch = useDispatch()

@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
-import { editPost } from "../../../store/post";
+import { updatePost } from "../../../store/post";
 import ReactQuill from 'react-quill'
 import 'quill/dist/quill.snow.css'
 
-const PostForm = () => {
-    d
+const EditPost = () => {
+    const { postId } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
     const sessionUser = useSelector((state) => state.session.user)
-    const [title, setTitle] = useState("")
-    const [userId, setUserId] = useState(sessionUser.id)
-    const [body, setBody] = useState("")
+    const post = useSelector((state) => state.post[postId])
+    const [title, setTitle] = useState(post?.tile)
+    const [userId, setUserId] = useState(sessionUser?.id)
+    const [body, setBody] = useState(post?.body)
     // const { quill, quillRef } = useQuill()
     // var quill = new Quill('#editor', {
     //     theme: 'snow'
@@ -22,18 +23,15 @@ const PostForm = () => {
         e.preventDefault()
         if (sessionUser) {
             setUserId(sessionUser?.id)
-            console.log("success")
             //user_id =: userId
             const payload = {
                 title: title,
                 body: body
             }
-            console.log(userId)
-            console.log(body)
-            const newPost = dispatch(createPost(payload))
+            const newPost = dispatch(updatePost(payload))
 
             if (newPost) {
-                alert("Successfully created new Post!")
+                alert("Successfully created updated Post!")
                 setTitle("")
                 setBody("")
                 history.push('/')
@@ -74,4 +72,4 @@ const PostForm = () => {
     )
 }
 
-export default PostForm;
+export default EditPost;

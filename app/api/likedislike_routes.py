@@ -17,7 +17,6 @@ def get_likedislike(id):
     likedislike = LikeDislike.query.get(id)
     return likedislike.to_dict()
 
-# Edit a Like/Dislike
 @likedislike_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_likeDislike(id):
