@@ -19,6 +19,7 @@ class Character(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
+            'name': self.name,
             'rarity': self.rarity,
             'description': self.description,
             'archetype': self.archetype,

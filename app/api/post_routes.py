@@ -76,4 +76,4 @@ def create_comment(id):
 
     db.session.add(comment)
     db.session.commit()
-    return comment.to_dict()
+    return comment.to_dict_basic()

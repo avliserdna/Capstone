@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { getSinglePost } from "../../../store/post";
 import { getPostComments } from "../../../store/comment";
+import { getCharacters } from "../../../store/character";
 
 const PostView = () => {
     const dispatch = useDispatch()
@@ -13,6 +14,7 @@ const PostView = () => {
     useEffect(() => {
         dispatch(getSinglePost(postId))
         dispatch(getPostComments(postId))
+        dispatch(getCharacters())
     }, [dispatch,])
 
     return (
@@ -25,9 +27,11 @@ const PostView = () => {
             </div>
 
             <div className="comment-container">
+                <h3>Comments</h3>
                 {comments?.map((comment) => (
                     <>
                         <p>{comment?.body}</p>
+                        <h4>{comment?.username}</h4>
                     </>
                 ))}
             </div>

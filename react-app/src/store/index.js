@@ -5,13 +5,15 @@ import postReducer from './post';
 import postMapDataReducer from './postedmaps';
 import commentReducer from './comment'
 import likeDislikeReducer from './likesdislikes';
+import characterReducer from './character';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   post: postReducer,
   comment: commentReducer,
   postMap: postMapDataReducer,
-  reaction: likeDislikeReducer
+  reaction: likeDislikeReducer,
+  character: characterReducer
 });
 
 

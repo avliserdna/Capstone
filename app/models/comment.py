@@ -14,10 +14,19 @@ class Comment(db.Model):
     comment_post = db.relationship('Post', back_populates='post_comments')
     comment_owner = db.relationship('User', back_populates='owner_comment')
     comment_response = db.relationship('LikeDislike', back_populates='response_comment',  cascade='all, delete')
-    def to_dict(self):
+    def to_dict_basic(self):
         return {
             'id': self.id,
             'user_id': self.user_id,
             'post_id': self.post_id,
             'body': self.body
+        }
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'post_id': self.post_id,
+            'body': self.body,
+            'username': self.comment_owner.to_dict()['username']
         }
