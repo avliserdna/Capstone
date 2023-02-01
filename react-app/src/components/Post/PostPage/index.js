@@ -4,11 +4,13 @@ import { NavLink, useHistory, useParams } from "react-router-dom";
 import { getSinglePost } from "../../../store/post";
 import { getPostComments } from "../../../store/comment";
 import { getCharacters } from "../../../store/character";
+import { deletePost } from "../../../store/post";
 
 const PostView = () => {
     const dispatch = useDispatch()
     const { postId } = useParams()
     const history = useHistory()
+    const user = useSelector((store) => store.session.user)
     const post = useSelector((store) => store.post)
     const comments = useSelector((store) => Object.values(store.comment))
     useEffect(() => {
@@ -17,14 +19,27 @@ const PostView = () => {
         dispatch(getCharacters())
     }, [dispatch,])
 
+    const deleteData = (e) => {
+        dispatch(deletePost(post?.id))
+        alert("Delete successful!")
+        history.push('/')
+    }
+
     return (
         <>
             <div className="post-container">
                 <h2>{post?.title}</h2>
-                <button onClick={() => {
-                    history.push(`/posts/${postId}/edit`)
-                }}>Edit Post</button>
-                <button>Delete Post</button>
+                {
+                    user?.id === post?.author_id || user?.admin ? (
+                        <button onClick={() => {
+                            history.push(`/posts/${postId}/edit`)
+                        }}>Edit Post</button>) : null
+                }
+                {
+                    user?.id === post?.author.id || user?.admin ? (
+                        <button onClick={(e) => deleteData(e)}>Delete Post</button>
+                    ) : null
+                }
                 <body dangerouslySetInnerHTML={{ __html: post?.body }} />
             </div>
 
