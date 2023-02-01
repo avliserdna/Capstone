@@ -4,7 +4,7 @@ import { NavLink, useHistory, useParams } from "react-router-dom";
 import { getSinglePost } from "../../../store/post";
 import { getPostComments } from "../../../store/comment";
 import { getCharacters } from "../../../store/character";
-import { deletePost } from "../../../store/post";
+import { removePost } from "../../../store/post";
 
 const PostView = () => {
     const dispatch = useDispatch()
@@ -17,10 +17,13 @@ const PostView = () => {
         dispatch(getSinglePost(postId))
         dispatch(getPostComments(postId))
         dispatch(getCharacters())
+        if (user === undefined) {
+            user = {}
+        }
     }, [dispatch,])
 
     const deleteData = (e) => {
-        dispatch(deletePost(post?.id))
+        dispatch(removePost(post?.id))
         alert("Delete successful!")
         history.push('/')
     }
@@ -29,17 +32,21 @@ const PostView = () => {
         <>
             <div className="post-container">
                 <h2>{post?.title}</h2>
-                {
-                    user?.id === post?.author_id || user?.admin ? (
-                        <button onClick={() => {
-                            history.push(`/posts/${postId}/edit`)
-                        }}>Edit Post</button>) : null
-                }
-                {
-                    user?.id === post?.author.id || user?.admin ? (
-                        <button onClick={(e) => deleteData(e)}>Delete Post</button>
-                    ) : null
-                }
+                <div>
+                    {
+                        user?.id === post?.author_id || user?.admin ? (
+                            <button onClick={() => {
+                                history.push(`/posts/${postId}/edit`)
+                            }}>Edit Post</button>) : null
+                    }
+                </div>
+                <div>
+                    {
+                        user?.id === post?.author_id || user?.admin ? (
+                            <button onClick={(e) => deleteData(e)}>Delete Post</button>
+                        ) : null
+                    }
+                </div>
                 <body dangerouslySetInnerHTML={{ __html: post?.body }} />
             </div>
 
