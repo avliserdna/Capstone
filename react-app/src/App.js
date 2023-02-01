@@ -11,7 +11,7 @@ import { authenticate } from './store/session';
 import AllPost from './components/Home';
 import PostView from './components/Post/PostPage';
 import PostForm from './components/Post/PostForm';
-
+import EditPost from './components/Post/EditPost';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -51,7 +51,7 @@ function App() {
           <PostView />
         </Route>
         <Route path='/posts/:postId/edit' exact={true}>
-
+          <EditPost />
         </Route>
         <Route path='/new/post' exact={true}>
           <PostForm />

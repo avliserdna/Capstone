@@ -34,7 +34,7 @@ export const updatePost = (post) => {
 export const getPosts = () => async (dispatch) => {
     const response = await fetch(`/api/posts/`)
     const postData = await response.json();
-    dispatch(getPost(postData))
+    return dispatch(getPost(postData))
 }
 
 export const createPost = (postData) => async (dispatch) => {
@@ -48,14 +48,14 @@ export const createPost = (postData) => async (dispatch) => {
 
     if (response.ok) {
         const post = await response.json();
-        dispatch(addPost(post))
+        return dispatch(addPost(post))
     }
 }
 
 export const getSinglePost = (id) => async (dispatch) => {
     const response = await fetch(`/api/posts/${id}`)
     const postData = await response.json();
-    dispatch(getPost(postData))
+    return dispatch(getPost(postData))
 }
 
 export const editPost = (id, postData) => async (dispatch) => {
@@ -69,7 +69,7 @@ export const editPost = (id, postData) => async (dispatch) => {
 
     if (response.ok) {
         const post = await response.json();
-        dispatch(updatePost(post))
+        return dispatch(updatePost(post))
     }
 }
 
@@ -78,7 +78,7 @@ export const removePost = (id) => async (dispatch) => {
         method: "DELETE"
     })
     if (response.ok) {
-        dispatch(deletePost(id))
+        return dispatch(deletePost(id))
     }
 }
 

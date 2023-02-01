@@ -21,7 +21,9 @@ const PostView = () => {
         <>
             <div className="post-container">
                 <h2>{post?.title}</h2>
-                <button>Edit Post</button>
+                <button onClick={() => {
+                    history.push(`/posts/${postId}/edit`)
+                }}>Edit Post</button>
                 <button>Delete Post</button>
                 <body dangerouslySetInnerHTML={{ __html: post?.body }} />
             </div>
