@@ -24,10 +24,10 @@ export const editComment = (comment) => {
     }
 }
 
-export const deleteComment = (comment) => {
+export const deleteComment = (commentId) => {
     return {
         type: DELETE_COMMENT,
-        comment
+        commentId
     }
 }
 
@@ -50,8 +50,8 @@ export const getComment = (id) => async (dispatch) => {
     dispatch(loadComment(commentData))
 }
 
-export const postComment = (commentData) => async (dispatch) => {
-    const response = await fetch(`/api/comments`, {
+export const postComment = (postId, commentData) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${postId}/comments`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -86,7 +86,7 @@ export const removeComment = (commentId) => async (dispatch) => {
     })
 
     if (response.ok) {
-        dispatch(removeComment(commentId))
+        dispatch(deleteComment(commentId))
     }
 }
 
@@ -94,13 +94,15 @@ export default function commentReducer(state = {}, action) {
     const newState = { ...state }
     switch (action.type) {
         case LOAD_COMMENT:
-            return action.comment
+            return { ...state, ...action.comment }
         case ADD_COMMENT:
-            return newState[action.comment.id] = action.comment
+            newState[action.comment.id] = action.comment
+            return newState
         case UPDATE_COMMENT:
-            return newState[action.comment.id] = action.comment
+            newState[action.comment.id] = action.comment
+            return newState
         case DELETE_COMMENT:
-            delete newState[action.commentid]
+            delete newState[action.commentId]
             return newState
         default:
             return state

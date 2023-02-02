@@ -86,7 +86,7 @@ export default function postReducer(state = {}, action) {
     const newState = { ...state }
     switch (action.type) {
         case GET_POST:
-            return action.post
+            return { ...newState, ...action.post }
         case ADD_POST:
             newState[action.post.id] = action.post;
             return newState

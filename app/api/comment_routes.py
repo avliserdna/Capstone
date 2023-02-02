@@ -13,7 +13,7 @@ def update_comment(id):
     comment = Comment.query.get(id)
     comment.body = form.data['body']
 
-    db.session.commit(comment)
+    db.session.commit()
     return comment.to_dict_basic()
 
 # Delete comment
