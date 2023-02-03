@@ -19,9 +19,9 @@ const AllPost = () => {
             <div className="posts-container">
                 {posts?.map((post) => (
                     <>
-                        <div>
+                        <div className="post-holder">
 
-                            <NavLink to={`/posts/${post.id}`}>
+                            <NavLink to={`/posts/${post?.id}`}>
                                 <h2>{post.title}</h2>
                             </NavLink>
                             {/* <p>{post.body}</p> */}
