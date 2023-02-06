@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { getPosts } from "../../store/post";
 import { getAllLikesDislikes } from "../../store/likesdislikes";
+import './index.css'
 
 const AllPost = () => {
     const dispatch = useDispatch()
@@ -15,23 +16,29 @@ const AllPost = () => {
     }, [dispatch])
     return (
         <>
-            <h1>Apple Pie's Posts</h1>
-            <div className="posts-container">
-                {posts?.map((post) => (
-                    <>
-                        <div className="post-holder">
+            <img className="cc10" src="CC10Ashring.png" />
+            <div className="home-body">
 
-                            <NavLink to={`/posts/${post?.id}`}>
-                                <h2>{post.title}</h2>
-                            </NavLink>
-                            {/* <p>{post.body}</p> */}
-                        </div>
-                    </>
-                )
 
-                )}
+                <h1 className="header">Apple Pie's Posts</h1>
+                <div className="posts-container">
+                    {posts?.map((post) => (
+                        <>
+                            <div className="post-holder">
+
+                                <NavLink to={`/posts/${post?.id}`}>
+                                    <h2 className="post-title">{post.title}</h2>
+                                </NavLink>
+                                {/* <p>{post.body}</p> */}
+                            </div>
+                        </>
+                    )
+
+                    )}
+                </div>
             </div>
         </>
+
     )
 }
 export default AllPost

@@ -1,0 +1,41 @@
+/* CSS */
+.button-46 {
+    align-items: center;
+    background-color: #222831;
+    border: 1px solid #222831;
+    border-radius: 16px;
+    box-sizing: border-box;
+    color: #EEEEEE;
+    cursor: pointer;
+    display: flex;
+    font-family: Inter, sans-serif;
+    font-size: 18px;
+    justify-content: center;
+    line-height: 28px;
+    max-width: 100%;
+    padding: 14px 22px;
+    text-decoration: none;
+    transition: all .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
+}
+
+.button-46:active,
+.button-46:hover {
+    outline: 0;
+}
+
+.button-46:hover {
+    background-color: #393E46;
+    border-color: rgba(0, 0, 0, 0.19);
+}
+
+@media (min-width: 768px) {
+    .button-46 {
+        font-size: 20px;
+        min-width: 50px;
+        padding: 14px 16px;
+    }
+}

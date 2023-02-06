@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
+.post-container {
+    background-color: #393E46;
+    margin: auto;
+}
+
+.post-container body {
+    background-color: #393E46;
+    margin: auto;
+    color: #EEEEEE;
+    font-family: "Sans Serif Pro", sans-serif;
+}
+
+.post-container h1 {
+    text-align: center;
+    font-family: "Monsterrat", sans-serif;
+    color: #EEEEEE;
+    padding: 20px;
+}
+
+.comment-container {
+    display: flex;
+    flex-direction: column;
+    background-color: tomato;
+}
+
+.comment-container h2 {
+    font-family: "Monsterrat", sans-serif;
+    color: #EEEEEE;
+}
+
+.comment-container input {
+    width: 25%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+}

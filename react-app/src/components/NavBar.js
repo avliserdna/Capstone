@@ -13,28 +13,28 @@ const NavBar = () => {
       <img className="logo" src="apple_pie_bold_transparent_3.png" />
       <ul className="navbar-list">
 
-        <li>
+        <li className='navbar-list'>
           <NavLink to='/' exact={true} activeClassName='active'>
             <div className='navbar-button'>
               Home
             </div>
           </NavLink>
         </li>
-        <li>
+        <li className='navbar-list'>
           <NavLink to='/login' exact={true} activeClassName='active'>
             <div className='navbar-button'>
               Login
             </div>
           </NavLink>
         </li>
-        <li>
+        <li className='navbar-list'>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
             <div className='navbar-button'>
               Sign Up
             </div>
           </NavLink>
         </li>
-        <li>
+        <li className='navbar-list'>
           <NavLink to='/users' exact={true} activeClassName='active'>
             <div className='navbar-button'>
               Users

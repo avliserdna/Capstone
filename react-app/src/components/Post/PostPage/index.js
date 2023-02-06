@@ -9,6 +9,7 @@ import { postComment } from "../../../store/comment";
 import { removeComment } from "../../../store/comment";
 import Popup from 'reactjs-popup'
 import EditCommentForm from "./EditComment";
+import './index.css'
 
 const PostView = () => {
     const dispatch = useDispatch()
@@ -65,7 +66,7 @@ const PostView = () => {
     return (
         <>
             <div className="post-container">
-                <h2>{post?.title}</h2>
+                <h1>{post?.title}</h1>
                 <div>
                     {
                         user?.id === post?.author_id || user?.admin ? (
@@ -86,38 +87,38 @@ const PostView = () => {
 
             <div className="comment-container">
 
-                <h3>Comments</h3>
-                <div>
-                    <input
-                        className="comment-body"
-                        required
-                        name="body"
-                        value={body}
-                        onChange={(e) => setBody(e.target.value)}></input>
-                    <button
-                        className="comment-submit"
-                        type="submit"
-                        onClick={(e) => handleSubmit(e)}>Post Comment</button>
-                </div>
-                {comments?.map((comment) => (
-                    <>
-                        <p>{comment?.body}</p>
-                        <h4>{comment?.username}</h4>
+                <h2>Comments</h2>
 
-                        {user?.id === comment?.user_id ? <Popup trigger={<button>Edit Comment</button>} position="right center" modal nested>
-                            {
-                                close => (
-                                    <div className='modal'>
-                                        <EditCommentForm close={close} comment={comment} />
-                                    </div>
-                                )
-                            }
-                        </Popup> : false}
-                        {user?.id === comment?.user_id ? <button className="comment-delete"
-                            onClick={(e) => handleDelete(e, comment?.id)}>Delete Button</button> : null}
-                    </>
-                ))}
+                <input
+                    className="comment-body"
+                    required
+                    type="textarea"
+                    name="body"
+                    value={body}
+                    onChange={(e) => setBody(e.target.value)}></input>
+                <button
+                    className="comment-submit"
+                    type="submit"
+                    onClick={(e) => handleSubmit(e)}>Post Comment</button>
             </div>
+            {comments?.map((comment) => (
+                <>
+                    <p>{comment?.body}</p>
+                    <h4>{comment?.username}</h4>
+
+                    {user?.id === comment?.user_id ? <Popup trigger={<button>Edit Comment</button>} position="right center" modal nested>
+                        {
+                            close => (
+                                <div className='modal'>
+                                    <EditCommentForm close={close} comment={comment} />
+                                </div>
+                            )
+                        }
+                    </Popup> : false}
+                    {user?.id === comment?.user_id ? <button className="comment-delete"
+                        onClick={(e) => handleDelete(e, comment?.id)}>Delete Button</button> : null}
+                </>
+            ))}
         </>
     )
 }
