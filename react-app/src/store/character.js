@@ -40,14 +40,14 @@ export const getCharacters = () => async (dispatch) => {
 export const getCharacter = () => async (dispatch) => {
     const response = await fetch(`/api/characters`)
     const characterData = await response.json();
-    dispatch(loadCharacter(characterData))
+    dispatch(loadCharacter({ [characterData.id]: characterData }))
 }
 
 export default function characterReducer(state = {}, action) {
     const newState = { ...state }
     switch (action.type) {
         case LOAD_CHARACTER:
-            return action.character
+            return { ...newState, ...action.character }
         default:
             return state
     }

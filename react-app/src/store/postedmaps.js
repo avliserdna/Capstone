@@ -24,10 +24,10 @@ export const editPostedMap = (postedMap) => {
     }
 }
 
-export const deletePostedMap = (postedMap) => {
+export const deletePostedMap = (postMapId) => {
     return {
         type: REMOVE_POSTED_MAP,
-        postedMap
+        postMapId
     }
 }
 
@@ -40,7 +40,7 @@ export const getPostedMaps = () => async (dispatch) => {
 export const getSinglePostedMap = (postedMapId) => async (dispatch) => {
     const response = await fetch(`/api/postedmaps/${postedMapId}`)
     const postedMapData = await response.json();
-    dispatch(getPostedMap(postedMapData))
+    dispatch(getPostedMap({ [postedMapData.id]: postedMapData }))
 }
 
 export const createPostedMap = (postMapData) => async (dispatch) => {
@@ -88,13 +88,13 @@ export default function postMapDataReducer(state = {}, action) {
     const newState = { ...state }
     switch (action.type) {
         case GET_POSTED_MAP:
-            return action.postMap
+            return { ...newState, ...action.postMap }
         case ADD_POSTED_MAP:
             return newState[action.postMap.id] = action.postMap
         case UPDATE_POSTED_MAP:
             return newState[action.postMap.id] = action.postMap
         case REMOVE_POSTED_MAP:
-            delete newState[action.postMap.id]
+            delete newState[action.postMapId]
             return newState
         default:
             return state

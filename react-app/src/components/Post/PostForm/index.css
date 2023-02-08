@@ -1,0 +1,31 @@
+.post-body {
+    background-color: #EEEEEE;
+    width: 100%;
+    height: 31.25rem;
+    margin-top: 3.625rem;
+    margin-bottom: 3.625rem;
+    align-self: center;
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+.post-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    font-family: "Monsterrat", sans-serif;
+    width: 50%;
+}
+
+.post-title-form {
+    font-family: "Source Sans Pro", sans-serif;
+    width: 50%;
+    border: 0;
+    border-bottom: 2px solid gray;
+    outline: 0;
+    font-size: 1.3rem;
+    color: #000000;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+
+}

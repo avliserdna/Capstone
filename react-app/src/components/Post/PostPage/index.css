@@ -2,38 +2,89 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
 
 .post-container {
-    background-color: #393E46;
+    background-color: #EEEEEE;
     margin: auto;
+    border-bottom: solid;
+    padding-bottom: 30px;
+}
+
+.post-button {
+    order: -2;
+    width: 150px;
+    background-color: #393E46;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    margin: 5px;
+    outline: none;
+    padding: 10px 16px;
+    align-self: left;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.post-button button {
+    font-family: "Monsterrat", sans-serif;
+}
+
+.post-button:hover,
+.post-button:focus {
+    background-color: #000000;
 }
 
 .post-container body {
-    background-color: #393E46;
+    background-color: #EEEEEE;
     margin: auto;
-    color: #EEEEEE;
+    color: #222831;
     font-family: "Sans Serif Pro", sans-serif;
 }
 
 .post-container h1 {
     text-align: center;
     font-family: "Monsterrat", sans-serif;
-    color: #EEEEEE;
+    color: #222831;
     padding: 20px;
 }
 
 .comment-container {
     display: flex;
     flex-direction: column;
-    background-color: tomato;
+    /* background-color: #393E46; */
+    background-color: #EEEEEE;
+
+    align-items: left;
 }
 
-.comment-container h2 {
+.comment-form h2 {
     font-family: "Monsterrat", sans-serif;
-    color: #EEEEEE;
+    color: #393E46;
+    align-self: left;
 }
 
-.comment-container input {
-    width: 25%;
-    height: 150px;
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    margin-left: 20px
+}
+
+.comment-body {
+    width: 250px;
+    height: 100px;
     padding: 12px 20px;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -41,4 +92,63 @@
     background-color: #f8f8f8;
     font-size: 16px;
     resize: none;
+}
+
+
+/* .comment-submit {
+    width: 100px;
+} */
+
+/* <!-- HTML !-->
+<button class="button-1" role="button">Button 1</button> */
+
+/* CSS */
+.comment-submit {
+    width: 150px;
+    background-color: #222831;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #EEEEEE;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    margin: 5px;
+    margin-top: 10px;
+    outline: none;
+    padding: 10px 16px;
+    align-self: left;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.comment-submit button {
+    font-family: "Monsterrat", sans-serif;
+}
+
+.comment-submit:hover,
+.comment-submit:focus {
+    background-color: #000000;
+
+}
+
+.comment-container .comment h4 {
+    font-family: "Monsterrat", sans-serif;
+    color: #393E46;
+    margin-left: 20px;
+}
+
+.comment-container .comment p {
+    font-family: "Sans Serif Pro", sans-serif;
+    color: #393E46;
+    margin-left: 20px;
 }

@@ -4,6 +4,7 @@ import { NavLink, useHistory, useParams } from "react-router-dom";
 import { editPost, getSinglePost } from "../../../store/post";
 import ReactQuill from 'react-quill'
 import 'quill/dist/quill.snow.css'
+import './EditPost.css'
 
 const EditPost = () => {
     const { postId } = useParams()
@@ -49,15 +50,15 @@ const EditPost = () => {
             <div className="post-container">
                 <h1>Update Your Post</h1>
                 <form className="post-form" onSubmit={handleSubmit}>
-                    <label>Set Title: </label>
+                    <label className="post-label">Set Title: </label>
                     <input
-                        className="post-title"
+                        className="post-title-form"
                         type="text"
                         name="title"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     ></input>
-                    <ReactQuill theme="snow" value={body} onChange={setBody} />
+                    <ReactQuill className="edit-post-body" theme="snow" value={body} onChange={setBody} />
 
                     <button className="post-button" type="submit">
                         Update Post

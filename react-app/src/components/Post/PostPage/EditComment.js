@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import Popup from 'reactjs-popup'
 import { useDispatch, useSelector } from "react-redux";
 import { updateComment } from "../../../store/comment";
-
+import './EditComment.css'
+import { compose } from "redux";
 const EditCommentForm = ({ close, comment }) => {
     const dispatch = useDispatch()
     const user = useSelector((state) => state?.session.user)
     const [body, setBody] = useState(comment?.body)
 
     const handleSubmit = async (e) => {
+        e.preventDefault()
         if (user?.id === comment?.user_id || user?.admin) {
             const payload = {
                 body: body
@@ -21,12 +23,19 @@ const EditCommentForm = ({ close, comment }) => {
         }
 
 
+
+    }
+
+    const handleClose = async (e) => {
+        e.preventDefault()
+        close()
     }
     return (
         <div className='modal'>
+            <button className="edit-close" onClick={(e) => handleClose(e)}>X</button>
             <div className='content'>
-                <form className="edit-comment">
-                    <h1>Edit Comment</h1>
+                <form className="edit-comment" onSubmit={handleSubmit}>
+                    <h1 className="edit-text">Edit Comment</h1>
                     <input
                         className="comment-body"
                         type="string"
@@ -36,18 +45,20 @@ const EditCommentForm = ({ close, comment }) => {
                         onChange={(e) => setBody(e.target.value)}>
                     </input>
                     <button
-                        className="comment-button"
+                        className="comment-submit"
                         type="button"
-                        onClick={(e) => handleSubmit(e)}>
+                        onClick={handleSubmit}
+                    // onClick={(e) => handleSubmit(e)}
+                    >
                         Edit Comment
                     </button>
                 </form>
             </div>
-            <div>
+            {/* <div>
                 <button onClick={() => close()}>
                     Close
                 </button>
-            </div>
+            </div> */}
         </div>
     )
 }

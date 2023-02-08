@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.modal {
+    background-color: #EEEEEE;
+    border-color: #222831;
+    border-style: solid;
+    border-radius: 2%;
+}
+
+.edit-comment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+
+}
+
+.edit-text {
+    font-family: "Monsterrat", sans-serif;
+    text-align: center;
+    color: #000000
+}
+
+.edit-close {
+
+    background-color: #222831;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    margin: 5px;
+    outline: none;
+    padding: 10px 16px;
+    align-self: left;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.edit-close button {
+    font-family: "Monsterrat", sans-serif;
+}
+
+.edit-close:hover,
+.edit-close:focus {
+    background-color: #000000;
+}

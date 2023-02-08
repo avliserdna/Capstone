@@ -40,7 +40,7 @@ export const getAllLikesDislikes = () => async (dispatch) => {
 export const getLikeDislike = (reactionId) => async (dispatch) => {
     const response = await fetch(`/api/likesdislikes/${reactionId}`)
     const reactionData = await response.json()
-    dispatch(loadReaction(reactionData))
+    dispatch(loadReaction({ [reactionData.id]: reactionData }))
 }
 
 export const postLikeDislike = (reactionData) => async (dispatch) => {
@@ -88,7 +88,7 @@ export default function likeDislikeReducer(state = {}, action) {
     const newState = { ...state }
     switch (action.type) {
         case LOAD_REACTION:
-            return action.reaction
+            return { ...newState, ...action.reaction }
         case ADD_REACTION:
             return newState[action.reaction.id] = action.reaction
         case UPDATE_REACTION:

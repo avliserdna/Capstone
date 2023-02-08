@@ -17,7 +17,7 @@ const PostView = () => {
     const history = useHistory()
     const [body, setBody] = useState("")
     const user = useSelector((store) => store.session.user)
-    const post = useSelector((store) => store.post)
+    const post = useSelector((store) => store.post[postId])
     const comments = useSelector((store) => Object.values(store.comment))
     useEffect(() => {
         dispatch(getSinglePost(postId))
@@ -70,7 +70,7 @@ const PostView = () => {
                 <div>
                     {
                         user?.id === post?.author_id || user?.admin ? (
-                            <button onClick={() => {
+                            <button className="post-button" onClick={() => {
                                 history.push(`/posts/${postId}/edit`)
                             }}>Edit Post</button>) : null
                     }
@@ -78,7 +78,7 @@ const PostView = () => {
                 <div>
                     {
                         user?.id === post?.author_id || user?.admin ? (
-                            <button onClick={(e) => deleteData(e)}>Delete Post</button>
+                            <button className="post-button" onClick={(e) => deleteData(e)}>Delete Post</button>
                         ) : null
                     }
                 </div>
@@ -86,39 +86,44 @@ const PostView = () => {
             </div>
 
             <div className="comment-container">
+                <form className="comment-form" onSubmit={handleSubmit}>
+                    <h2>Comments</h2>
 
-                <h2>Comments</h2>
+                    <input
+                        className="comment-body"
+                        required
+                        type="textarea"
+                        name="body"
+                        value={body}
+                        onChange={(e) => setBody(e.target.value)}></input>
+                    <button
+                        className="comment-submit"
+                        type="submit"
+                    // onClick={(e) => handleSubmit(e)}
+                    >Post Comment
+                    </button>
+                </form>
+                {comments?.map((comment) => (
+                    <div class="comment">
+                        <h4>{comment?.username}</h4>
+                        <p>{comment?.body}</p>
 
-                <input
-                    className="comment-body"
-                    required
-                    type="textarea"
-                    name="body"
-                    value={body}
-                    onChange={(e) => setBody(e.target.value)}></input>
-                <button
-                    className="comment-submit"
-                    type="submit"
-                    onClick={(e) => handleSubmit(e)}>Post Comment</button>
+
+                        {user?.id === comment?.user_id ? <Popup trigger={<button className="comment-submit">Edit Comment</button>} position="right center" modal nested>
+                            {
+                                close => (
+                                    <div className='modal'>
+                                        <EditCommentForm close={close} comment={comment} />
+                                    </div>
+                                )
+                            }
+                        </Popup> : false}
+                        {user?.id === comment?.user_id ? <button className="comment-submit"
+                            onClick={(e) => handleDelete(e, comment?.id)}>Delete Button</button> : null}
+                    </div>
+                ))}
             </div>
-            {comments?.map((comment) => (
-                <>
-                    <p>{comment?.body}</p>
-                    <h4>{comment?.username}</h4>
 
-                    {user?.id === comment?.user_id ? <Popup trigger={<button>Edit Comment</button>} position="right center" modal nested>
-                        {
-                            close => (
-                                <div className='modal'>
-                                    <EditCommentForm close={close} comment={comment} />
-                                </div>
-                            )
-                        }
-                    </Popup> : false}
-                    {user?.id === comment?.user_id ? <button className="comment-delete"
-                        onClick={(e) => handleDelete(e, comment?.id)}>Delete Button</button> : null}
-                </>
-            ))}
         </>
     )
 }

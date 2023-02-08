@@ -31,12 +31,6 @@ export const deleteComment = (commentId) => {
     }
 }
 
-export const getAllComments = () => async (dispatch) => {
-    const response = await fetch(`/api/comments/`)
-    const commentData = await response.json();
-    dispatch(loadComment(commentData))
-}
-
 export const getPostComments = (postId) => async (dispatch) => {
     const response = await fetch(`/api/posts/${postId}/comments`)
     const commentData = await response.json();
@@ -47,7 +41,7 @@ export const getPostComments = (postId) => async (dispatch) => {
 export const getComment = (id) => async (dispatch) => {
     const response = await fetch(`/api/comments/${id}`)
     const commentData = await response.json();
-    dispatch(loadComment(commentData))
+    dispatch(loadComment({ [commentData.id]: commentData }))
 }
 
 export const postComment = (postId, commentData) => async (dispatch) => {
@@ -94,7 +88,7 @@ export default function commentReducer(state = {}, action) {
     const newState = { ...state }
     switch (action.type) {
         case LOAD_COMMENT:
-            return { ...state, ...action.comment }
+            return { ...newState, ...action.comment }
         case ADD_COMMENT:
             newState[action.comment.id] = action.comment
             return newState

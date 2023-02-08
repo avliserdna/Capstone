@@ -17,10 +17,10 @@ export const addPost = (post) => {
     }
 }
 
-export const deletePost = (post) => {
+export const deletePost = (postId) => {
     return {
         type: REMOVE_POST,
-        post
+        postId
     }
 }
 
@@ -34,6 +34,7 @@ export const updatePost = (post) => {
 export const getPosts = () => async (dispatch) => {
     const response = await fetch(`/api/posts/`)
     const postData = await response.json();
+    console.log(postData)
     return dispatch(getPost(postData))
 }
 
@@ -55,7 +56,8 @@ export const createPost = (postData) => async (dispatch) => {
 export const getSinglePost = (id) => async (dispatch) => {
     const response = await fetch(`/api/posts/${id}`)
     const postData = await response.json();
-    return dispatch(getPost(postData))
+    console.log(postData, "single new post")
+    return dispatch(getPost({ [postData.id]: postData }))
 }
 
 export const editPost = (id, postData) => async (dispatch) => {
@@ -86,7 +88,9 @@ export default function postReducer(state = {}, action) {
     const newState = { ...state }
     switch (action.type) {
         case GET_POST:
-            return { ...newState, ...action.post }
+            return {
+                ...newState, ...action.post
+            }
         case ADD_POST:
             newState[action.post.id] = action.post;
             return newState
@@ -94,7 +98,7 @@ export default function postReducer(state = {}, action) {
             newState[action.post.id] = action.post;
             return newState
         case REMOVE_POST:
-            delete newState[action.post.id]
+            delete newState[action.postId]
             return newState
         default:
             return state

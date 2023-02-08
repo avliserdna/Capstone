@@ -14,7 +14,7 @@ def update_comment(id):
     comment.body = form.data['body']
 
     db.session.commit()
-    return comment.to_dict_basic()
+    return comment.to_dict()
 
 # Delete comment
 @comment_routes.route('/<int:id>', methods=["DELETE"])
