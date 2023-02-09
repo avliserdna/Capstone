@@ -39,6 +39,18 @@ const NavBar = () => {
 
           </li>
         }
+        {sessionUser ? null :
+          <li className='navbar-list'>
+
+
+            <NavLink to='/login' exact={true} activeClassName='active'>
+              <div className='navbar-button'>
+                Demo Login
+              </div>
+            </NavLink>
+
+          </li>
+        }
         {sessionUser ? null : <li className='navbar-list'>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
             <div className='navbar-button'>
