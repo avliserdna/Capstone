@@ -59,6 +59,13 @@
     padding: 20px;
 }
 
+.comment {
+    width: 25%;
+    margin: 1.25rem;
+    border-radius: 5%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 .comment-container {
     display: flex;
     flex-direction: column;

@@ -19,8 +19,7 @@ const AllPost = () => {
             <img className="cc10" src="CC10Ashring.png" />
             <div className="home-body">
 
-
-                <h1 className="header">Apple Pie's Posts</h1>
+                <h1 className="header">Posts and Guides</h1>
                 <div className="posts-container">
                     {posts?.map((post) => (
                         <>
@@ -28,6 +27,7 @@ const AllPost = () => {
 
                                 <NavLink to={`/posts/${post?.id}`}>
                                     <h2 className="post-title">{post.title}</h2>
+                                    <p>by {post?.username}</p>
                                 </NavLink>
                                 {/* <p>{post.body}</p> */}
                             </div>

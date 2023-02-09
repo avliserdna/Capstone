@@ -10,8 +10,15 @@ const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user)
   return (
     <nav className="navbar-container">
+
       <img className="logo" src="apple_pie_bold_transparent_3.png" />
       <ul className="navbar-list">
+        {sessionUser ? <li className='navbar-list'>
+          <div className="navbar-logged-in">
+            Hello {sessionUser?.username}!
+          </div>
+
+        </li> : null}
 
         <li className='navbar-list'>
           <NavLink to='/' exact={true} activeClassName='active'>
@@ -20,30 +27,26 @@ const NavBar = () => {
             </div>
           </NavLink>
         </li>
-        <li className='navbar-list'>
-          {
-            sessionUser ? <></> :
-              <NavLink to='/login' exact={true} activeClassName='active'>
-                <div className='navbar-button'>
-                  Login
-                </div>
-              </NavLink>
-          }
-        </li>
-        <li className='navbar-list'>
+        {sessionUser ? null :
+          <li className='navbar-list'>
+
+
+            <NavLink to='/login' exact={true} activeClassName='active'>
+              <div className='navbar-button'>
+                Login
+              </div>
+            </NavLink>
+
+          </li>
+        }
+        {sessionUser ? null : <li className='navbar-list'>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
             <div className='navbar-button'>
               Sign Up
             </div>
           </NavLink>
         </li>
-        <li className='navbar-list'>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            <div className='navbar-button'>
-              Users
-            </div>
-          </NavLink>
-        </li>
+        }
         {
           sessionUser?.author ? <li>
             <NavLink to="/new/post" exact={true} activeClassName='active'>

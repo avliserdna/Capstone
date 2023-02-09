@@ -19,5 +19,6 @@ class Post(db.Model):
             'id': self.id,
             'author_id': self.author_id,
             'title': self.title,
-            'body': self.body
+            'body': self.body,
+            'username': self.post_author.to_dict()['username']
         }

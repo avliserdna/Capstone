@@ -23,7 +23,13 @@ li a {
     list-style-type: none;
 }
 
+.navbar-logged-in {
 
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #ffffff;
+}
 
 .navbar-button {
 
