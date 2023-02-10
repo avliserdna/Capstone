@@ -1,13 +1,18 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
 import './NavBar.css'
-
+import { login } from '../store/session';
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user)
+  const dispatch = useDispatch()
+  const demoLogin = async (e) => {
+    e.preventDefault()
+    const data = await dispatch(login('demo@aa.io', 'password'))
+  }
   return (
     <nav className="navbar-container">
 
@@ -43,7 +48,7 @@ const NavBar = () => {
           <li className='navbar-list'>
 
 
-            <NavLink to='/login' exact={true} activeClassName='active'>
+            <NavLink to='/' exact={true} activeClassName='active' onClick={demoLogin}>
               <div className='navbar-button'>
                 Demo Login
               </div>

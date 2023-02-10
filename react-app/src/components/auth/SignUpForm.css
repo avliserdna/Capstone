@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
+
+.signup-form-handler {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+.signup-form-handler div {
+    display: flex;
+    justify-content: space-between;
+    /* align-self: left;
+    flex-wrap: wrap;
+    align-content: flex-start; */
+    align-items: flex-end;
+    margin: 0.625rem;
+}
+
+.signup-form {
+    display: inline-block;
+    font-family: "Sans Serif Pro", sans-serif;
+    width: 50%;
+    border: 0;
+    border-bottom: 2px solid gray;
+    outline: 0;
+    font-size: 1.0rem;
+    color: #000000;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.signup-form-handler label {
+    font-family: "Monsterrats", sans-serif;
+    font-size: 1.15rem;
+
+}
+
+.signup-btn {
+    font-family: "Sans Serif Pro", sans-serif;
+    width: 4.625rem;
+    align-self: center;
+    margin: .625rem;
+    background-color: #393E46;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    height: 3.0rem;
+    line-height: 20px;
+    list-style: none;
+    outline: none;
+    padding: 10px 16px;
+    align-self: left;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}

@@ -35,7 +35,7 @@ export const getPostComments = (postId) => async (dispatch) => {
     const response = await fetch(`/api/posts/${postId}/comments`)
     const commentData = await response.json();
     console.log(commentData, "<=== COMMENT DATA")
-    dispatch(loadComment(commentData))
+    dispatch(loadComment({ [commentData.id]: commentData }))
 }
 
 export const getComment = (id) => async (dispatch) => {

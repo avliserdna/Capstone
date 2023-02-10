@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './SignUpForm.css'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -15,7 +16,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password, "", true, false));
       if (data) {
         setErrors(data)
       }
@@ -43,7 +44,7 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <form className="signup-form-handler" onSubmit={onSignUp}>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -52,6 +53,7 @@ const SignUpForm = () => {
       <div>
         <label>User Name</label>
         <input
+          className='signup-form'
           type='text'
           name='username'
           onChange={updateUsername}
@@ -61,6 +63,7 @@ const SignUpForm = () => {
       <div>
         <label>Email</label>
         <input
+          className='signup-form'
           type='text'
           name='email'
           onChange={updateEmail}
@@ -70,6 +73,7 @@ const SignUpForm = () => {
       <div>
         <label>Password</label>
         <input
+          className='signup-form'
           type='password'
           name='password'
           onChange={updatePassword}
@@ -79,6 +83,7 @@ const SignUpForm = () => {
       <div>
         <label>Repeat Password</label>
         <input
+          className='signup-form'
           type='password'
           name='repeat_password'
           onChange={updateRepeatPassword}
@@ -86,7 +91,7 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
-      <button type='submit'>Sign Up</button>
+      <button className='signup-btn' type='submit'>Sign Up</button>
     </form>
   );
 };
