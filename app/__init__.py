@@ -44,7 +44,7 @@ app.register_blueprint(map_routes, url_prefix='/api/maps')
 app.register_blueprint(post_routes, url_prefix='/api/posts')
 app.register_blueprint(profile_routes, url_prefix='/api/profiles')
 app.register_blueprint(team_suggestion_routes, url_prefix='/api/teamsuggestions')
-app.register_blueprint(posted_map_routes, url_previx='/api/postedmaps')
+app.register_blueprint(posted_map_routes, url_prefix='/api/postedmaps')
 db.init_app(app)
 Migrate(app, db)
 

@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
 import './NavBar.css'
 import { login } from '../store/session';
-
 const NavBar = () => {
+
   const sessionUser = useSelector((state) => state.session.user)
   const dispatch = useDispatch()
   const demoLogin = async (e) => {
@@ -16,7 +16,7 @@ const NavBar = () => {
   return (
     <nav className="navbar-container">
 
-      <img className="logo" src="apple_pie_bold_transparent_3.png" />
+      <img className="logo" src="/apple_pie_bold_transparent_3.png" />
       <ul className="navbar-list">
         {sessionUser ? <li className='navbar-list'>
           <div className="navbar-logged-in">
