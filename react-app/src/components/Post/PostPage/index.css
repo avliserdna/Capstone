@@ -81,6 +81,13 @@
     align-self: left;
 }
 
+.comment-link {
+    font-family: "Monsterrat", sans-serif;
+    color: #222831;
+    align-self: left;
+    margin-left: 1.625rem;
+}
+
 .comment-form {
     display: flex;
     flex-direction: column;

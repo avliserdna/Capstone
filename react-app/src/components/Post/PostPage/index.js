@@ -86,7 +86,7 @@ const PostView = () => {
             </div>
 
             <div className="comment-container">
-                <form className="comment-form" onSubmit={handleSubmit}>
+                {user ? <form className="comment-form" onSubmit={handleSubmit}>
                     <h2>Comments</h2>
 
                     <input
@@ -102,7 +102,7 @@ const PostView = () => {
                     // onClick={(e) => handleSubmit(e)}
                     >Post Comment
                     </button>
-                </form>
+                </form> : <h2 className="comment-link">Only <NavLink to='/login' exact={true} activeClassName='active'> logged in </NavLink> in users can post comments!</h2>}
                 {comments?.map((comment) => (
                     <div class="comment">
                         <h4>{comment?.username}</h4>
