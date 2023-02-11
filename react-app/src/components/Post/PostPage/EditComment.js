@@ -12,13 +12,19 @@ const EditCommentForm = ({ close, comment }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (user?.id === comment?.user_id || user?.admin) {
-            const payload = {
-                body: body
-            }
-            const editedComment = dispatch(updateComment(comment?.id, payload))
 
-            if (editedComment) {
-                close()
+            if (body) {
+                const payload = {
+                    body: body
+                }
+                const editedComment = dispatch(updateComment(comment?.id, payload))
+
+                if (editedComment) {
+                    close()
+                }
+            }
+            else {
+                alert("Body must not be blank!")
             }
         }
 

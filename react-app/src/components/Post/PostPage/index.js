@@ -7,6 +7,7 @@ import { getCharacters } from "../../../store/character";
 import { removePost } from "../../../store/post";
 import { postComment } from "../../../store/comment";
 import { removeComment } from "../../../store/comment";
+import { getPostLikesDislikes } from "../../../store/likesdislikes";
 import Popup from 'reactjs-popup'
 import EditCommentForm from "./EditComment";
 import './index.css'
@@ -27,7 +28,7 @@ const PostView = () => {
         if (user === undefined) {
             user = {}
         }
-    }, [dispatch,])
+    }, [dispatch])
 
     const deleteData = (e) => {
         e.preventDefault()
