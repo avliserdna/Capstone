@@ -31,8 +31,8 @@ class SignUpForm(FlaskForm):
     username = StringField(
         'username', validators=[DataRequired(), username_exists])
     email = StringField('email', validators=[DataRequired(), user_exists, email_has_chars])
-    password = PasswordField('password', validators=[DataRequired(), EqualTo('confirm_password', message="Passwords must match!")])
-    confirm_password = PasswordField('confirm_pasword', validators=[DataRequired()])
+    password = PasswordField('password', validators=[DataRequired()])
+    confirm_password = PasswordField('confirm_pasword', validators=[])
     profile_pic = StringField('profile_pic', validators=[])
     author = BooleanField('author', validators=[])
     admin = BooleanField('admin', validators=[])

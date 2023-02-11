@@ -13,7 +13,8 @@ const rootReducer = combineReducers({
   comment: commentReducer,
   postMap: postMapDataReducer,
   reaction: likeDislikeReducer,
-  character: characterReducer
+  character: characterReducer,
+  likeDislike: likeDislikeReducer
 });
 
 

@@ -73,9 +73,9 @@ const NavBar = () => {
             </NavLink>
           </li> : null
         }
-        <li>
+        {sessionUser ? <li>
           <LogoutButton />
-        </li>
+        </li> : null}
       </ul>
     </nav>
   );

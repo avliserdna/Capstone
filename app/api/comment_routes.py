@@ -43,3 +43,11 @@ def react_comment(id):
     db.session.add(react)
     db.session.commit()
     return react.to_dict()
+
+# Get all LikesDislikes of a Post
+@comment_routes.route('/<int:id>/reactions', methods=['GET'])
+def get_comment_reactions(id):
+    comment = Comment.query.get(id)
+    reactions = LikeDislike.query().filter(LikeDislike.comment_id == comment.id)
+
+    return reactions.to_dict()

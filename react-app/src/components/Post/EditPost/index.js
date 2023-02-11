@@ -28,27 +28,34 @@ const EditPost = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (sessionUser?.id === post?.author_id || sessionUser.admin) {
-            const payload = {
-                title: title,
-                body: body
-            }
-            const updatedPost = dispatch(editPost(postId, payload))
-
-            if (updatedPost) {
-                alert("Successfully updated Post!")
-                setTitle("")
-                setBody("")
-                history.push('/')
-            }
+        console.log(body)
+        console.log(body.length)
+        if (body == "<p><br></p>") {
+            alert("Body must not be empty!")
         }
         else {
-            window.confirm("Must be signed in to create a post!")
-            history.push('/login')
+
+            if (sessionUser?.id === post?.author_id || sessionUser.admin) {
+                const payload = {
+                    title: title,
+                    body: body
+                }
+                const updatedPost = dispatch(editPost(postId, payload))
+
+                if (updatedPost) {
+                    alert("Successfully updated Post!")
+                    setTitle("")
+                    setBody("")
+                    history.push('/')
+                }
+            }
+            else {
+                window.confirm("Must be signed in to create a post!")
+                history.push('/login')
+            }
         }
-
-
     }
+
 
     return (
         <>
