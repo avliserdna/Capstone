@@ -64,6 +64,7 @@ const EditPost = () => {
                 <form className="post-form" onSubmit={handleSubmit}>
                     <label className="post-label">Set Title: </label>
                     <input
+                        required
                         className="post-title-form"
                         type="text"
                         name="title"
