@@ -9,7 +9,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     title = db.Column(db.String(255), nullable=False)
-    body = db.Column(db.String(255), nullable=False)
+    body = db.Column(db.String(), nullable=False)
 
     post_author = db.relationship('User', back_populates="authorship")
     post_comments = db.relationship('Comment', back_populates='comment_post', cascade='all, delete')
