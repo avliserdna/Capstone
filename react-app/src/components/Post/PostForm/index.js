@@ -11,12 +11,18 @@ const PostForm = () => {
     const history = useHistory()
     const sessionUser = useSelector((state) => state.session.user)
     const [title, setTitle] = useState("")
-    const [userId, setUserId] = useState(sessionUser.id)
+    const [userId, setUserId] = useState(sessionUser?.id)
     const [body, setBody] = useState("")
     // const { quill, quillRef } = useQuill()
     // var quill = new Quill('#editor', {
     //     theme: 'snow'
     // });
+
+    useEffect(() => {
+        if (!sessionUser) {
+            history.push('/')
+        }
+    })
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -28,8 +34,6 @@ const PostForm = () => {
                 title: title,
                 body: body
             }
-            console.log(userId)
-            console.log(body)
             const newPost = dispatch(createPost(payload))
 
             if (newPost) {

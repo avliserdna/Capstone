@@ -11,15 +11,20 @@ const EditPost = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const sessionUser = useSelector((state) => state.session.user)
-    const post = useSelector((state) => state.post)
+    const post = useSelector((state) => state.post[postId])
     const [title, setTitle] = useState(post.title)
     const [userId, setUserId] = useState(sessionUser?.id)
     const [body, setBody] = useState(post.body)
 
     useEffect(() => {
+        if (!sessionUser) {
+            history.push('/')
+        }
 
         dispatch(getSinglePost(postId))
     }, [dispatch])
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()

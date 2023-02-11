@@ -34,8 +34,10 @@ export const deleteComment = (commentId) => {
 export const getPostComments = (postId) => async (dispatch) => {
     const response = await fetch(`/api/posts/${postId}/comments`)
     const commentData = await response.json();
-    console.log(commentData, "<=== COMMENT DATA")
-    dispatch(loadComment({ [commentData.id]: commentData }))
+    if (response.ok) {
+        dispatch(loadComment(commentData))
+    }
+
 }
 
 export const getComment = (id) => async (dispatch) => {

@@ -19,6 +19,7 @@ const PostView = () => {
     const user = useSelector((store) => store.session.user)
     const post = useSelector((store) => store.post[postId])
     const comments = useSelector((store) => Object.values(store.comment))
+    const postComments = comments.filter((comment) => comment.post_id == postId)
     useEffect(() => {
         dispatch(getSinglePost(postId))
         dispatch(getPostComments(postId))
@@ -63,6 +64,7 @@ const PostView = () => {
     //         )
     //     }
     // </Popup>
+    console.log(comments)
     return (
         <>
             <div className="post-container">
@@ -103,7 +105,7 @@ const PostView = () => {
                     >Post Comment
                     </button>
                 </form> : <h2 className="comment-link">Only <NavLink to='/login' exact={true} activeClassName='active'> logged in </NavLink> in users can post comments!</h2>}
-                {comments?.map((comment) => (
+                {postComments?.length > 0 ? postComments?.map((comment) => (
                     <div class="comment">
                         <h4>{comment?.username}</h4>
                         <p>{comment?.body}</p>
@@ -121,7 +123,7 @@ const PostView = () => {
                         {user?.id === comment?.user_id ? <button className="comment-submit"
                             onClick={(e) => handleDelete(e, comment?.id)}>Delete Button</button> : null}
                     </div>
-                ))}
+                )) : <h2>No comments made for this post! Be the first one to comment.</h2>}
             </div>
 
         </>
