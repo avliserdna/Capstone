@@ -23,10 +23,16 @@ class Comment(db.Model):
         }
 
     def to_dict(self):
+        likes = [reaction.to_dict()['like'] for reaction in self.comment_response]
+        dislikes = [reaction.to_dict()['dislike'] for reaction in self.comment_response]
+        likeTotal = sum(likes)
+        dislikeTotal = sum(dislikes)
+        reactTotal = likeTotal - dislikeTotal
         return {
             'id': self.id,
             'user_id': self.user_id,
             'post_id': self.post_id,
             'body': self.body,
-            'username': self.comment_owner.to_dict()['username']
+            'username': self.comment_owner.to_dict()['username'],
+            'reactionTotal': reactTotal
         }
