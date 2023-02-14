@@ -122,7 +122,7 @@ const PostView = () => {
                             }
                         </Popup> : false}
                         {user?.id === comment?.user_id ? <button className="comment-submit"
-                            onClick={(e) => handleDelete(e, comment?.id)}>Delete Button</button> : null}
+                            onClick={(e) => handleDelete(e, comment?.id)}>Delete Comment</button> : null}
                     </div>
                 )) : <h2>No comments made for this post! Be the first one to comment.</h2>}
             </div>

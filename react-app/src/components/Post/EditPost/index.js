@@ -46,7 +46,7 @@ const EditPost = () => {
                     alert("Successfully updated Post!")
                     setTitle("")
                     setBody("")
-                    history.push('/')
+                    history.push(`/posts/${postId}`)
                 }
             }
             else {
