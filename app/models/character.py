@@ -13,7 +13,7 @@ class Character(db.Model):
     archetype = db.Column(db.String(255), nullable=False)
     icon = db.Column(db.String(255), nullable=False)
 
-    character_team = db.relationship('TeamSuggestion', back_populates="team_characters", cascade='all, delete')
+    # character_team = db.relationship('TeamSuggestion', back_populates="team_characters", cascade='all, delete')
     character_profile = db.relationship('Profile', back_populates="profile_character") # Ask Alex/Bill/Zaviar if character needs CASCADE DELETE ALL here
 
     def to_dict(self):
