@@ -48,6 +48,6 @@ def react_comment(id):
 @comment_routes.route('/<int:id>/reactions', methods=['GET'])
 def get_comment_reactions(id):
     comment = Comment.query.get(id)
-    reactions = LikeDislike.query().filter(LikeDislike.comment_id == comment.id)
+    reactions = LikeDislike.query.filter(LikeDislike.comment_id == comment.id).all()
 
-    return reactions.to_dict()
+    return {reaction.id: reaction.to_dict() for reaction in reactions}

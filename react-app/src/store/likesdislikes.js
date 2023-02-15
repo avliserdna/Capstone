@@ -37,7 +37,7 @@ export const getAllLikesDislikes = () => async (dispatch) => {
     dispatch(loadReaction(reactionData))
 }
 
-export const getPostLikesDislikes = (commentId) => async (dispatch) => {
+export const getCommentLikesDislikes = (commentId) => async (dispatch) => {
     const response = await fetch(`/api/comments/${commentId}/reactions`)
     const reactionData = await response.json()
     dispatch(loadReaction(reactionData))

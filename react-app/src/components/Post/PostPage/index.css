@@ -64,6 +64,11 @@
     margin: 1.25rem;
     border-radius: 5%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .comment-container {
@@ -165,4 +170,19 @@
     font-family: "Sans Serif Pro", sans-serif;
     color: #393E46;
     margin-left: 20px;
+}
+
+.like-button {
+    margin: 15px;
+    cursor: pointer;
+}
+
+.dislike-button {
+    margin: 15px;
+    cursor: pointer;
+}
+
+.reaction-buttons {
+    display: flex;
+    align-items: center;
 }

@@ -7,11 +7,12 @@ import { getCharacters } from "../../../store/character";
 import { removePost } from "../../../store/post";
 import { postComment } from "../../../store/comment";
 import { removeComment } from "../../../store/comment";
-import { getPostLikesDislikes } from "../../../store/likesdislikes";
+import { getCommentLikesDislikes } from "../../../store/likesdislikes";
 import Popup from 'reactjs-popup'
 import EditCommentForm from "./EditComment";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './index.css'
-
+import Comment from "./ViewComment";
 const PostView = () => {
     const dispatch = useDispatch()
     const { postId } = useParams()
@@ -25,6 +26,7 @@ const PostView = () => {
         dispatch(getSinglePost(postId))
         dispatch(getPostComments(postId))
         dispatch(getCharacters())
+
         if (user === undefined) {
             user = {}
         }
@@ -50,22 +52,6 @@ const PostView = () => {
         }
     }
 
-    const handleDelete = (e, commentId) => {
-        e.preventDefault()
-        dispatch(removeComment(commentId))
-    }
-
-
-    //     <Popup trigger={<button>Edit Comment</button>} position="right center" modal nested>
-    //     {
-    //         close => (
-    //             <div className='modal'>
-    //                 <EditCommentForm close={close} comment={comment} />
-    //             </div>
-    //         )
-    //     }
-    // </Popup>
-    console.log(comments)
     return (
         <>
             <div className="post-container">
@@ -107,23 +93,7 @@ const PostView = () => {
                     </button>
                 </form> : <h2 className="comment-link">Only <NavLink to='/login' exact={true} activeClassName='active'> logged in </NavLink> in users can post comments!</h2>}
                 {postComments?.length > 0 ? postComments?.map((comment) => (
-                    <div class="comment">
-                        <h4>{comment?.username}</h4>
-                        <p>{comment?.body}</p>
-
-
-                        {user?.id === comment?.user_id ? <Popup trigger={<button className="comment-submit">Edit Comment</button>} position="right center" modal nested>
-                            {
-                                close => (
-                                    <div className='modal'>
-                                        <EditCommentForm close={close} comment={comment} />
-                                    </div>
-                                )
-                            }
-                        </Popup> : false}
-                        {user?.id === comment?.user_id ? <button className="comment-submit"
-                            onClick={(e) => handleDelete(e, comment?.id)}>Delete Comment</button> : null}
-                    </div>
+                    <Comment commentId={comment.id} />
                 )) : <h2>No comments made for this post! Be the first one to comment.</h2>}
             </div>
 
