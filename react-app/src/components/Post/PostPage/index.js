@@ -6,11 +6,12 @@ import { getPostComments } from "../../../store/comment";
 import { getCharacters } from "../../../store/character";
 import { removePost } from "../../../store/post";
 import { postComment } from "../../../store/comment";
-import { removeComment } from "../../../store/comment";
-import { getCommentLikesDislikes } from "../../../store/likesdislikes";
-import Popup from 'reactjs-popup'
-import EditCommentForm from "./EditComment";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { removeComment } from "../../../store/comment";
+// import { getCommentLikesDislikes } from "../../../store/likesdislikes";
+// import Popup from 'reactjs-popup'
+// import EditCommentForm from "./EditComment";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { getUserLikesDislikes } from "../../../store/likesdislikes";
 import './index.css'
 import Comment from "./ViewComment";
 const PostView = () => {
@@ -22,10 +23,13 @@ const PostView = () => {
     const post = useSelector((store) => store.post[postId])
     const comments = useSelector((store) => Object.values(store.comment))
     const postComments = comments.filter((comment) => comment.post_id == postId)
+    const reactions = useSelector((store) => store.reaction)
+
     useEffect(() => {
         dispatch(getSinglePost(postId))
         dispatch(getPostComments(postId))
         dispatch(getCharacters())
+        dispatch(getUserLikesDislikes(user?.id))
 
         if (user === undefined) {
             user = {}
@@ -93,7 +97,7 @@ const PostView = () => {
                     </button>
                 </form> : <h2 className="comment-link">Only <NavLink to='/login' exact={true} activeClassName='active'> logged in </NavLink> in users can post comments!</h2>}
                 {postComments?.length > 0 ? postComments?.map((comment) => (
-                    <Comment commentId={comment.id} />
+                    <Comment commentId={comment?.id} reaction={reactions[comment?.id]} />
                 )) : <h2>No comments made for this post! Be the first one to comment.</h2>}
             </div>
 

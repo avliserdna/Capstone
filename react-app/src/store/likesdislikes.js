@@ -36,6 +36,12 @@ export const getAllLikesDislikes = () => async (dispatch) => {
     const reactionData = await response.json()
     dispatch(loadReaction(reactionData))
 }
+// Only need Logged in users Reactions/ Likes and Dislikes
+export const getUserLikesDislikes = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/likesdislikes/users/${userId}`)
+    const reactionData = await response.json()
+    dispatch(loadReaction(reactionData))
+}
 
 export const getCommentLikesDislikes = (commentId) => async (dispatch) => {
     const response = await fetch(`/api/comments/${commentId}/reactions`)

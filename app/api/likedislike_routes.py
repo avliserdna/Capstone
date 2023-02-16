@@ -27,3 +27,10 @@ def update_likeDislike(id):
 
     db.session.commit(likeDislike)
     return likeDislike.to_dict()
+
+#Get Users Like/Dislike
+@likedislike_routes.route('/users/<int:id>')
+def get_users_likedislike(id):
+    reactions = LikeDislike.query.filter(LikeDislike.user_id == id)
+
+    return {reaction.comment_id: reaction.to_dict() for reaction in reactions}

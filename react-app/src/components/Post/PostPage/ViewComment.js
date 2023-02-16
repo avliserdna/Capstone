@@ -4,33 +4,34 @@ import { NavLink, useHistory, useParams } from "react-router-dom";
 import { getComment, getPostComments } from "../../../store/comment";
 import { postComment } from "../../../store/comment";
 import { removeComment } from "../../../store/comment";
-import { getCommentLikesDislikes } from "../../../store/likesdislikes";
+// import { getCommentLikesDislikes } from "../../../store/likesdislikes";
+// import { getUserLikesDislikes } from "../../../store/likesdislikes";
 import Popup from 'reactjs-popup'
 import EditCommentForm from "./EditComment";
 
 
-const Comment = ({ commentId }) => {
+const Comment = ({ commentId, reaction }) => {
     const dispatch = useDispatch()
     const comment = useSelector((store) => store.comment[commentId])
     const user = useSelector((store) => store.session.user)
-    const reactions = useSelector((store) => Object.values(store.reaction))
-    // const reactionsArray = Object.values(state.reaction)
-    // return Object(reactionsArray.filter(reaction => reaction.user_id == user?.id))
-    const userReaction = reactions?.filter((reaction) => reaction?.user_id == user?.id && reaction?.comment_id == commentId)
-    const [like, setLike] = useState(userReaction[0]?.like)
-    const [dislike, setDislike] = useState(userReaction[0]?.dislike)
-
-    console.log(reactions, "Comment Reaction")
-    console.log(userReaction, "user REaction")
+    // const reactions = useSelector((store) => Object.values(store.reaction))
+    const [like, setLike] = useState(reaction?.like)
+    const [dislike, setDislike] = useState(reaction?.dislike)
+    console.log(reaction, "reaction")
+    // console.log(userReaction, "user REaction")
     useEffect(() => {
-        dispatch(getCommentLikesDislikes(comment?.id))
-    }, [dispatch])
+        // dispatch(getCommentLikesDislikes(comment?.id))
+        if (reaction) {
+            setLike(reaction.like)
+            setDislike(reaction.dislike)
+        }
+    }, [dispatch, reaction])
     const handleDelete = (e, commentId) => {
         e.preventDefault()
         dispatch(removeComment(commentId))
     }
-    console.log(like)
-    console.log(dislike)
+    console.log(like, "like")
+    console.log(dislike, "dislike")
     return (<>
         <div class="comment">
 
