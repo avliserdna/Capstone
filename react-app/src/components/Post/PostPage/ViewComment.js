@@ -4,6 +4,7 @@ import { NavLink, useHistory, useParams } from "react-router-dom";
 import { getComment, getPostComments } from "../../../store/comment";
 import { postComment } from "../../../store/comment";
 import { removeComment } from "../../../store/comment";
+import { postLikeDislike, updateLikeDislike } from "../../../store/likesdislikes";
 // import { getCommentLikesDislikes } from "../../../store/likesdislikes";
 // import { getUserLikesDislikes } from "../../../store/likesdislikes";
 import Popup from 'reactjs-popup'
@@ -30,8 +31,20 @@ const Comment = ({ commentId, reaction }) => {
         e.preventDefault()
         dispatch(removeComment(commentId))
     }
-    console.log(like, "like")
-    console.log(dislike, "dislike")
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        // if (reaction.like) {
+
+        // }
+        // if (reaction.dislike) console.log("disliked!")
+        if (reaction) {
+            console.log("You already reacted!")
+        }
+        else {
+            console.log("you did NOT react yet")
+        }
+    }
     return (<>
         <div class="comment">
 
@@ -39,8 +52,8 @@ const Comment = ({ commentId, reaction }) => {
             <p>{comment?.body}</p>
             {/* <FontAwesomeIcon icon="fa-solid fa-thumbs-up" /> */}
             <div className="reaction-buttons">
-                <span className="like-button"> {like ? <i class="fa-solid fa-thumbs-up"> </i> : <i class="fa-regular fa-thumbs-up"></i>}</span>
-                <span className="dislike-button"> {dislike ? <i class="fa-solid fa-thumbs-down"></i> : <i class="fa-regular fa-thumbs-down"></i>}</span>
+                <span onClick={(e) => handleSubmit(e)} className="like-button"> {like ? <i class="fa-solid fa-thumbs-up"> </i> : <i class="fa-regular fa-thumbs-up"></i>}</span>
+                <span onClick={(e) => handleSubmit(e)} className="dislike-button"> {dislike ? <i class="fa-solid fa-thumbs-down"></i> : <i class="fa-regular fa-thumbs-down"></i>}</span>
             </div>
 
 

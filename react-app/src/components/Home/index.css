@@ -41,7 +41,7 @@ body {
     justify-content: space-around;
     flex-direction: row;
     text-align: center;
-
+    flex-wrap: wrap;
 }
 
 .cc10 {
