@@ -19,7 +19,7 @@ const PostView = () => {
     const { postId } = useParams()
     const history = useHistory()
     const [body, setBody] = useState("")
-    const user = useSelector((store) => store.session.user)
+    let user = useSelector((store) => store.session.user)
     const post = useSelector((store) => store.post[postId])
     const comments = useSelector((store) => Object.values(store.comment))
     const postComments = comments.filter((comment) => comment.post_id == postId)
@@ -31,7 +31,7 @@ const PostView = () => {
         dispatch(getCharacters())
         dispatch(getUserLikesDislikes(user?.id))
 
-        if (user === undefined) {
+        if (user === undefined || user === null) {
             user = {}
         }
     }, [dispatch])

@@ -2,6 +2,7 @@ const LOAD_REACTION = 'likedislike/LOAD_REACTION'
 const ADD_REACTION = 'likedislike/ADD_REACTION'
 const UPDATE_REACTION = 'likedislike/UPDATE_REACTION'
 const DELETE_REACTION = 'likedislike/DELETE_REACTION'
+const EMPTY_REACTION = 'likedislike/EMPTY_REACTION'
 
 export const loadReaction = (reaction) => {
     return {
@@ -31,6 +32,13 @@ export const deleteReaction = (reaction) => {
     }
 }
 
+export const emptyReaction = () => {
+    return {
+        type: EMPTY_REACTION,
+        reaction: {}
+    }
+}
+
 export const getAllLikesDislikes = () => async (dispatch) => {
     const response = await fetch(`/api/likesdislikes/`)
     const reactionData = await response.json()
@@ -51,36 +59,37 @@ export const getCommentLikesDislikes = (commentId) => async (dispatch) => {
 export const getLikeDislike = (reactionId) => async (dispatch) => {
     const response = await fetch(`/api/likesdislikes/${reactionId}`)
     const reactionData = await response.json()
-    dispatch(loadReaction({ [reactionData.id]: reactionData }))
+    dispatch(loadReaction({ [reactionData.comment_id]: reactionData }))
 }
 
-export const postLikeDislike = (reactionData) => async (dispatch) => {
-    const response = await fetch(`/api/likesdislikes/`, {
+export const postLikeDislike = (commentId, reactionData) => async (dispatch) => {
+    const response = await fetch(`/api/likesdislikes/${commentId}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(reactionData)
     })
-
+    console.log(response)
     if (response.ok) {
         const newReaction = await response.json()
         dispatch(addReaction(newReaction))
     }
 }
 
-export const updateLikeDislike = (reactionId, reactionData) => async (dispatch) => {
-    const response = await fetch(`/api/likesdislikes/${reactionId}`, {
+export const updateLikeDislike = (commentId, reactionData) => async (dispatch) => {
+    const response = await fetch(`/api/likesdislikes/${commentId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(reactionData)
     })
+    console.log(response)
 
     if (response.ok) {
         const updatedReaction = await response.json()
-        dispatch(addReaction(updatedReaction))
+        dispatch(updateReaction(updatedReaction))
     }
 }
 
@@ -101,11 +110,15 @@ export default function likeDislikeReducer(state = {}, action) {
         case LOAD_REACTION:
             return { ...newState, ...action.reaction }
         case ADD_REACTION:
-            return newState[action.reaction.id] = action.reaction
+            newState[action.reaction.comment_id] = action.reaction
+            return newState
         case UPDATE_REACTION:
-            return newState[action.reaction.id] = action.reaction
+            newState[action.reaction.comment_id] = action.reaction
+            return newState
         case DELETE_REACTION:
             delete newState[action.reactionId]
+        case EMPTY_REACTION:
+            return {}
         default:
             return state
     }
