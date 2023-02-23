@@ -26,7 +26,7 @@ def delete_comment(id):
     db.session.commit()
     return {"message": "deleted successfully"}
 
-#First Time Reaction for Like-Dislike
+# #First Time Reaction for Like-Dislike
 @comment_routes.route('/<int:id>', methods=['POST'])
 @login_required
 def react_comment(id):

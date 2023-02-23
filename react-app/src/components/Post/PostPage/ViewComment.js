@@ -91,7 +91,7 @@ const Comment = ({ commentId, reaction }) => {
         }
 
         if (reaction) {
-            dispatch(updateLikeDislike(commentId, payload))
+            dispatch(updateLikeDislike(reaction.id, payload))
         }
         else {
             dispatch(postLikeDislike(commentId, payload))

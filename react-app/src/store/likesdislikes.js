@@ -63,7 +63,7 @@ export const getLikeDislike = (reactionId) => async (dispatch) => {
 }
 
 export const postLikeDislike = (commentId, reactionData) => async (dispatch) => {
-    const response = await fetch(`/api/likesdislikes/${commentId}`, {
+    const response = await fetch(`/api/comments/${commentId}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
