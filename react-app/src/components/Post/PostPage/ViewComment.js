@@ -18,9 +18,6 @@ const Comment = ({ commentId, reaction }) => {
     // const reactions = useSelector((store) => Object.values(store.reaction))
     const [like, setLike] = useState(reaction?.like || false)
     const [dislike, setDislike] = useState(reaction?.dislike || false)
-    console.log(reaction, "reaction")
-    console.log(like, "like")
-    console.log(dislike, "dislike")
     // console.log(userReaction, "user REaction")
     useEffect(() => {
         // dispatch(getCommentLikesDislikes(comment?.id))
@@ -32,8 +29,10 @@ const Comment = ({ commentId, reaction }) => {
     }, [dispatch, reaction])
 
     useEffect(() => {
+
         if (reaction) {
-            handleSubmit()
+            reaction.like ? console.log("liked!") : console.log("not liked!")
+            reaction.dislike ? console.log("disliked!") : console.log("not disliked")
         }
     }, [like, dislike])
     const handleDelete = (e, commentId) => {
@@ -42,23 +41,84 @@ const Comment = ({ commentId, reaction }) => {
     }
 
 
-    const handleSubmit = () => {
+    const handleLike = () => {
         const payload = {
             user_id: user.id,
             comment_id: commentId,
             like: like,
             dislike: dislike
         }
-
-        if (reaction) {
-            console.log("You already reacted!")
-            dispatch(updateLikeDislike(reaction.id, payload))
+        if (like) {
+            setLike(false)
+            payload.like = false
         }
         else {
-            console.log("you did NOT react yet")
+            setLike(true)
+            payload.like = true
+            if (dislike) {
+                setDislike(false)
+                payload.dislike = false
+            }
+        }
+
+        if (reaction) {
+            dispatch(updateLikeDislike(commentId, payload))
+        }
+        else {
+            dispatch(postLikeDislike(commentId, payload))
+        }
+        // return payload
+    }
+
+    const handleDislike = () => {
+        const payload = {
+            user_id: user.id,
+            comment_id: commentId,
+            like: like,
+            dislike: dislike
+        }
+        if (dislike) {
+            setDislike(false)
+            payload.dislike = false
+        }
+        else {
+            setDislike(true)
+            payload.dislike = true
+            if (like) {
+                setLike(false)
+                payload.like = false
+            }
+        }
+
+        if (reaction) {
+            dispatch(updateLikeDislike(commentId, payload))
+        }
+        else {
             dispatch(postLikeDislike(commentId, payload))
         }
     }
+
+    // (e) => {
+    //     if (reaction) {
+    //         if (reaction.like) {
+    //             console.log("has been liked!")
+    //             setLike(false)
+    //             // return handleSubmit(e)
+    //         }
+    //         else {
+    //             console.log("has not been liked!")
+    //             setLike(true)
+    //             setDislike(false)
+    //             // return handleSubmit(e)
+    //         }
+    //     }
+    //     else {
+    //         setLike(true)
+    //         // return handleSubmit(e)
+    //     }
+    //     // reaction ? setLike(false) : setLike(true)
+
+    // }
     return (<>
         <div class="comment">
 
@@ -66,45 +126,8 @@ const Comment = ({ commentId, reaction }) => {
             <p>{comment?.body}</p>
             {/* <FontAwesomeIcon icon="fa-solid fa-thumbs-up" /> */}
             {user ? <div className="reaction-buttons">
-                <span name="like" onClick={(e) => {
-                    if (reaction) {
-                        if (reaction.like) {
-                            console.log("has been liked!")
-                            setLike((e) => false)
-                            // return handleSubmit(e)
-                        }
-                        else {
-                            console.log("has not been liked!")
-                            setLike(((e) => true))
-                            setDislike(((e) => false))
-                            // return handleSubmit(e)
-                        }
-                    }
-                    else {
-                        setLike(((prev) => true))
-                        // return handleSubmit(e)
-                    }
-                    // reaction ? setLike(false) : setLike(true)
-
-                }} className="like-button"> {like ? <i class="fa-solid fa-thumbs-up"> </i> : <i class="fa-regular fa-thumbs-up"></i>}</span>
-                <span name="dislike" onClick={(e) => {
-                    if (reaction) {
-                        if (reaction.dislike) {
-                            setDislike(false)
-                            // return handleSubmit(e)
-                        }
-                        else {
-                            setDislike(true)
-                            setLike(false)
-                            // return handleSubmit(e)
-                        }
-                    }
-                    else {
-                        setDislike(true)
-                        // return handleSubmit(e)
-                    }
-                    return handleSubmit(e)
-                }} className="dislike-button"> {dislike ? <i class="fa-solid fa-thumbs-down"></i> : <i class="fa-regular fa-thumbs-down"></i>}</span>
+                <span name="like" onClick={handleLike} className="like-button"> {like ? <i class="fa-solid fa-thumbs-up"> </i> : <i class="fa-regular fa-thumbs-up"></i>}</span>
+                <span name="dislike" onClick={handleDislike} className="dislike-button"> {dislike ? <i class="fa-solid fa-thumbs-down"></i> : <i class="fa-regular fa-thumbs-down"></i>}</span>
             </div> : null}
 
 
