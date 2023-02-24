@@ -9,13 +9,13 @@ def get_character_data():
 
 def seed_characters():
     characters = get_character_data()
+    def character_art_key(character):
+        try:
+            character["art"]["Base"]
+            return character["art"]["Base"]
+        except:
+            return "image"
     for character in characters:
-        def character_art_key(character):
-            try:
-                character["art"]["Base"]
-                return character["art"]["Base"]
-            except:
-                return "image"
         ri_character = Character(api_id=character["_id"], description=character["description"], name=character["name"], rarity=character["rarity"], archetype=character["class"][0], icon=character_art_key(character))
         db.session.add(ri_character)
 def undo_characters():
