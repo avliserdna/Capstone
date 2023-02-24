@@ -12,6 +12,7 @@ class Character(db.Model):
     description = db.Column(db.String(255), nullable=False)
     archetype = db.Column(db.String(255), nullable=False)
     icon = db.Column(db.String(255), nullable=False)
+    api_id = db.Column(db.String(255), nullable=True)
 
     character_team = db.relationship('TeamSuggestion', back_populates="team_characters", cascade='all, delete')
     character_profile = db.relationship('Profile', back_populates="profile_character") # Ask Alex/Bill/Zaviar if character needs CASCADE DELETE ALL here
@@ -23,5 +24,6 @@ class Character(db.Model):
             'rarity': self.rarity,
             'description': self.description,
             'archetype': self.archetype,
-            'icon': self.icon
+            'icon': self.icon,
+            'api_id':  self.api_id
         }
