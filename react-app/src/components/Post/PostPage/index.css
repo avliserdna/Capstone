@@ -186,3 +186,11 @@
     display: flex;
     align-items: center;
 }
+
+.comment-text {
+    margin: 15px;
+}
+
+.character-icon {
+    height: 100px;
+}

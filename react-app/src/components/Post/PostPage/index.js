@@ -6,6 +6,7 @@ import { getPostComments } from "../../../store/comment";
 import { getCharacters } from "../../../store/character";
 import { removePost } from "../../../store/post";
 import { postComment } from "../../../store/comment";
+import Pagination from "./Pagination";
 // import { removeComment } from "../../../store/comment";
 // import { getCommentLikesDislikes } from "../../../store/likesdislikes";
 // import Popup from 'reactjs-popup'
@@ -14,6 +15,7 @@ import { postComment } from "../../../store/comment";
 import { getUserLikesDislikes } from "../../../store/likesdislikes";
 import './index.css'
 import Comment from "./ViewComment";
+import CharacterSuggestion from "./CharacterSuggestion";
 const PostView = () => {
     const dispatch = useDispatch()
     const { postId } = useParams()
@@ -24,6 +26,7 @@ const PostView = () => {
     const comments = useSelector((store) => Object.values(store.comment))
     const postComments = comments.filter((comment) => comment.post_id == postId)
     const reactions = useSelector((store) => store.reaction)
+    // Pagination Stuff
 
     useEffect(() => {
         dispatch(getSinglePost(postId))
@@ -58,6 +61,7 @@ const PostView = () => {
 
     return (
         <>
+
             <div className="post-container">
                 <h1>{post?.title}</h1>
                 <div>
@@ -76,6 +80,10 @@ const PostView = () => {
                     }
                 </div>
                 <body dangerouslySetInnerHTML={{ __html: post?.body }} />
+            </div>
+
+            <div className="character-suggestion">
+                <CharacterSuggestion />
             </div>
 
             <div className="comment-container">
