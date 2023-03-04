@@ -17,7 +17,7 @@ def team_suggestions():
 def add_team_suggestion():
     team_suggestions_data = request.json
     new_team_suggestion = TeamSuggestion(**team_suggestions_data, user_id = current_user.id)
-
+    # character_id is a list, iterate through it
     db.session.add(new_team_suggestion)
     db.session.commit()
     return new_team_suggestion.to_dict()

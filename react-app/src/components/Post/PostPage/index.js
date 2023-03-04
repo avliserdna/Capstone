@@ -7,11 +7,6 @@ import { getCharacters } from "../../../store/character";
 import { removePost } from "../../../store/post";
 import { postComment } from "../../../store/comment";
 import Pagination from "./Pagination";
-// import { removeComment } from "../../../store/comment";
-// import { getCommentLikesDislikes } from "../../../store/likesdislikes";
-// import Popup from 'reactjs-popup'
-// import EditCommentForm from "./EditComment";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getUserLikesDislikes } from "../../../store/likesdislikes";
 import './index.css'
 import Comment from "./ViewComment";

@@ -24,19 +24,18 @@ def set_likeDislike(id):
     current_user_id = int(current_user.get_id())
     form = LikeDislikeForm()
     likeDislike = LikeDislike.query.get(id)
-    if likeDislike:
-        likeDislike.like = form.data['like']
-        likeDislike.dislike = form.data['dislike']
-        db.session.commit()
-        return likeDislike.to_dict()
-    else:
-        react = LikeDislike(
-        comment_id = id,
-        user_id = current_user_id,
-        like = form.data['like'],
-        dislike = form.data['dislike']
-    )
-        return react.to_dict()
+    likeDislike.like = form.data['like']
+    likeDislike.dislike = form.data['dislike']
+    db.session.commit()
+    return likeDislike.to_dict()
+    # else:
+    #     react = LikeDislike(
+    #     comment_id = id,
+    #     user_id = current_user_id,
+    #     like = form.data['like'],
+    #     dislike = form.data['dislike']
+    # )
+    #     return react.to_dict()
 
 #Get Users Like/Dislike
 @likedislike_routes.route('/users/<int:id>')
