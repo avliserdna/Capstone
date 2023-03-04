@@ -23,7 +23,7 @@ const CharacterSuggestion = () => {
     }
 
     return (
-        <div className="modal">
+        <div className="character-holder">
             <div className="characters">
                 {/* {currentCharacters.map((character) => <img className="character-icon" src={character.icon} loading="lazy" />)} */}
                 {characterRender()}
