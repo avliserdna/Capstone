@@ -6,6 +6,8 @@ import postMapDataReducer from './postedmaps';
 import commentReducer from './comment'
 import likeDislikeReducer from './likesdislikes';
 import characterReducer from './character';
+import suggestionReducer from './teamsuggestion';
+import mapReducer from './map';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -14,7 +16,9 @@ const rootReducer = combineReducers({
   postMap: postMapDataReducer,
   reaction: likeDislikeReducer,
   character: characterReducer,
-  likeDislike: likeDislikeReducer
+  likeDislike: likeDislikeReducer,
+  teamSuggestion: suggestionReducer,
+  map: mapReducer
 });
 
 

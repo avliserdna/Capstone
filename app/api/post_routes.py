@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
-from app.models import Post, Comment, db
+from app.models import Post, Comment, db, TeamSuggestion
 from app.forms import PostForm, CommentForm
 
 post_routes = Blueprint('posts', __name__)
@@ -77,3 +77,9 @@ def create_comment(id):
     db.session.add(comment)
     db.session.commit()
     return comment.to_dict()
+
+@post_routes.route('/<int:id>/suggestions')
+def get_user_suggestion(id):
+    current_user_id = int(current_user.get_id())
+    suggestions = TeamSuggestion.query.filter(TeamSuggestion.user_id == current_user_id).all()
+    return {suggestion.id: suggestion.to_dict() for suggestion in suggestions}

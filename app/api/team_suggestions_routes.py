@@ -15,10 +15,13 @@ def team_suggestions():
 @team_suggestion_routes.route('/', methods=['POST'])
 @login_required
 def add_team_suggestion():
-    team_suggestions_data = request.json
-    new_team_suggestion = TeamSuggestion(**team_suggestions_data, user_id = current_user.id)
+    map_id = request.json["map_id"]
+    characters = request.json["character_ids"]
+    # iterate through list of suggestions here NOT in the front end
+    for api_id in characters:
+        new_team_suggestion = TeamSuggestion( map_id = map_id, user_id = current_user.id, character_id = api_id)
+        db.session.add(new_team_suggestion)
 
-    db.session.add(new_team_suggestion)
     db.session.commit()
     return new_team_suggestion.to_dict()
 

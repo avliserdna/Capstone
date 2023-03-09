@@ -12,10 +12,14 @@ import Pagination from "./Pagination";
 // import Popup from 'reactjs-popup'
 // import EditCommentForm from "./EditComment";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { getSinglePostedMap } from "../../../store/postedmaps";
 import { getUserLikesDislikes } from "../../../store/likesdislikes";
 import './index.css'
 import Comment from "./ViewComment";
 import CharacterSuggestion from "./CharacterSuggestion";
+import { getUserSuggestion } from "../../../store/teamsuggestion";
+import { getSingleMap } from "../../../store/map";
+
 const PostView = () => {
     const dispatch = useDispatch()
     const { postId } = useParams()
@@ -26,6 +30,8 @@ const PostView = () => {
     const comments = useSelector((store) => Object.values(store.comment))
     const postComments = comments.filter((comment) => comment.post_id == postId)
     const reactions = useSelector((store) => store.reaction)
+    const userSuggestion = useSelector((state) => Object.keys(state.teamSuggestion))
+    const postMap = useSelector((state) => state.postMap)
     // Pagination Stuff
 
     useEffect(() => {
@@ -33,10 +39,12 @@ const PostView = () => {
         dispatch(getPostComments(postId))
         dispatch(getCharacters())
         dispatch(getUserLikesDislikes(user?.id))
-
+        dispatch(getSinglePostedMap(postId))
         if (user === undefined || user === null) {
             user = {}
         }
+        dispatch(getUserSuggestion(user.id))
+        dispatch(getSingleMap(postMap.map_id))
     }, [dispatch])
 
     const deleteData = (e) => {
@@ -44,6 +52,10 @@ const PostView = () => {
         dispatch(removePost(post?.id))
         alert("Delete successful!")
         history.push('/')
+    }
+
+    const hasCharacterSuggestion = () => {
+        return userSuggestion.filter((suggestion) => suggestion.map_id === postMap.map_id).length
     }
 
     const handleSubmit = (e) => {
@@ -82,9 +94,10 @@ const PostView = () => {
                 <body dangerouslySetInnerHTML={{ __html: post?.body }} />
             </div>
 
-            <div className="character-suggestion">
-                <CharacterSuggestion />
-            </div>
+            {hasCharacterSuggestion() ? <div>Suggestions!</div> : <div className="character-suggestion">
+                <CharacterSuggestion postId={postId} />
+            </div>}
+
 
             <div className="comment-container">
                 {user ? <form className="comment-form" onSubmit={handleSubmit}>

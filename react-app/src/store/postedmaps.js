@@ -3,24 +3,24 @@ const ADD_POSTED_MAP = 'postedmap/ADD_POSTED_MAP'
 const UPDATE_POSTED_MAP = 'postedmap/UPDATE_POSTED_MAP'
 const REMOVE_POSTED_MAP = 'postedmap/REMOVE_POSTED_MAP'
 
-export const getPostedMap = (postedMap) => {
+export const getPostedMap = (postMap) => {
     return {
         type: GET_POSTED_MAP,
-        postedMap
+        postMap
     }
 }
 
-export const addPostedMap = (postedMap) => {
+export const addPostedMap = (postMap) => {
     return {
         type: ADD_POSTED_MAP,
-        postedMap
+        postMap
     }
 }
 
-export const editPostedMap = (postedMap) => {
+export const editPostedMap = (postMap) => {
     return {
         type: UPDATE_POSTED_MAP,
-        postedMap
+        postMap
     }
 }
 
@@ -48,7 +48,7 @@ export const createPostedMap = (postMapData) => async (dispatch) => {
         {
             method: "POST",
             headers: {
-                "Content-Type": "applicaiton/json"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(postMapData)
         })
@@ -63,7 +63,7 @@ export const updatePostedMap = (postedMapId, postMapData) => async (dispatch) =>
     const response = await fetch(`/api/postedmaps/${postedMapId}`, {
         method: "PUT",
         headers: {
-            "Content-Type": "applicaiton/json"
+            "Content-Type": "application/json"
         },
         body: JSON.stringify(postMapData)
     })
