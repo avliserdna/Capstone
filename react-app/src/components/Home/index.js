@@ -18,8 +18,8 @@ const AllPost = () => {
         <>
             <img className="cc10" src="CC10Ashring.png" />
             <div className="home-body">
-
                 <h1 className="header">Posts and Guides</h1>
+
                 <div className="posts-container">
                     {posts?.map((post) => (
                         <>

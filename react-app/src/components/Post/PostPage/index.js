@@ -60,15 +60,14 @@ const PostView = () => {
         <>
             <div className="post-container">
                 <h1>{post?.title}</h1>
-                <div>
+                <div className="post-edit-delete">
                     {
                         user?.id === post?.author_id || user?.admin ? (
                             <button className="post-button" onClick={() => {
                                 history.push(`/posts/${postId}/edit`)
                             }}>Edit Post</button>) : null
                     }
-                </div>
-                <div>
+
                     {
                         user?.id === post?.author_id || user?.admin ? (
                             <button className="post-button" onClick={(e) => deleteData(e)}>Delete Post</button>

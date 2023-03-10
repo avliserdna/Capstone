@@ -123,7 +123,9 @@ const Comment = ({ commentId, reaction }) => {
         <div class="comment">
 
             <h4>{comment?.username}</h4>
-            <p>{comment?.body}</p>
+
+            <p className="comment-text">{comment?.body}</p>
+
             {/* <FontAwesomeIcon icon="fa-solid fa-thumbs-up" /> */}
             {user ? <div className="reaction-buttons">
                 <span name="like" onClick={handleLike} className="like-button"> {like ? <i class="fa-solid fa-thumbs-up"> </i> : <i class="fa-regular fa-thumbs-up"></i>}</span>
