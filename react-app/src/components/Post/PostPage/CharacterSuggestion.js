@@ -17,7 +17,7 @@ const CharacterSuggestion = ({ mapId }) => {
     const currentCharacters = characters.slice(indexOfFirstRecord, indexOfLastRecord)
     const nPages = Math.ceil(characters.length / charactersPerPage)
     const userSuggestion = useSelector((state) => Object.values(state.teamSuggestion))
-
+    console.log(mapId)
     const handleCharacter = (character) => {
         if (suggestion.length >= 7) {
             console.log("No more characters!")
@@ -36,7 +36,7 @@ const CharacterSuggestion = ({ mapId }) => {
         else {
             const payload = {
                 user_id: user.id,
-                map_id: map.id,
+                map_id: mapId,
                 character_ids: suggestion
             }
             console.log(payload)

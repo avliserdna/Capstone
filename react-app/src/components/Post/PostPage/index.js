@@ -45,6 +45,7 @@ const PostView = () => {
         }
         dispatch(getUserSuggestion(user.id))
         dispatch(getSingleMap(postMap.map_id))
+        // dispatch(ge)
     }, [dispatch])
 
     const deleteData = (e) => {
@@ -76,27 +77,32 @@ const PostView = () => {
 
             <div className="post-container">
                 <h1>{post?.title}</h1>
-                <div>
+                <div className="post-edit-delete">
                     {
                         user?.id === post?.author_id || user?.admin ? (
                             <button className="post-button" onClick={() => {
                                 history.push(`/posts/${postId}/edit`)
                             }}>Edit Post</button>) : null
                     }
-                </div>
-                <div>
+
                     {
                         user?.id === post?.author_id || user?.admin ? (
                             <button className="post-button" onClick={(e) => deleteData(e)}>Delete Post</button>
                         ) : null
                     }
                 </div>
+
+
                 <body dangerouslySetInnerHTML={{ __html: post?.body }} />
             </div>
 
-            {hasCharacterSuggestion() ? <div>Suggestions!</div> : <div className="character-suggestion">
-                <CharacterSuggestion postId={postId} />
-            </div>}
+            {hasCharacterSuggestion() ?
+                <div className="suggested-characters">
+                    <h1>Recommended Characters</h1>
+
+                </div> : <div className="character-suggestion">
+                    <CharacterSuggestion mapId={postMap.map_id} />
+                </div>}
 
 
             <div className="comment-container">

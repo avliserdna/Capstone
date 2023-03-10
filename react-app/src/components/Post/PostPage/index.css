@@ -59,6 +59,12 @@
     padding: 20px;
 }
 
+.post-edit-delete {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
 .comment {
     width: 25%;
     margin: 1.25rem;
