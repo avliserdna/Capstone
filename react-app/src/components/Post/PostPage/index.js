@@ -33,13 +33,13 @@ const PostView = () => {
     const userSuggestion = useSelector((state) => Object.keys(state.teamSuggestion))
     const postMap = useSelector((state) => state.postMap)
     // Pagination Stuff
-
+    console.log(postMap[post?.author_id])
     useEffect(() => {
         dispatch(getSinglePost(postId))
         dispatch(getPostComments(postId))
         dispatch(getCharacters())
         dispatch(getUserLikesDislikes(user?.id))
-        dispatch(getSinglePostedMap(postId))
+        dispatch(getSinglePostedMap(post.author_id))
         if (user === undefined || user === null) {
             user = {}
         }
@@ -101,7 +101,7 @@ const PostView = () => {
                     <h1>Recommended Characters</h1>
 
                 </div> : <div className="character-suggestion">
-                    <CharacterSuggestion mapId={postMap.map_id} />
+                    <CharacterSuggestion mapId={postMap[post?.author_id]?.map_id} />
                 </div>}
 
 

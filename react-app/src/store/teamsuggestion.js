@@ -39,7 +39,7 @@ export const addSuggestion = (suggestionData) => async (dispatch) => {
 
     if (response.ok) {
         const suggestionData = await response.json()
-        dispatch(addSuggestion(suggestionData))
+        dispatch(addTeamSuggestion(suggestionData))
     }
 }
 
