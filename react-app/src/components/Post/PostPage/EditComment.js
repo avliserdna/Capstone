@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateComment } from "../../../store/comment";
 import './EditComment.css'
 import { compose } from "redux";
+
 const EditCommentForm = ({ close, comment }) => {
     const dispatch = useDispatch()
     const user = useSelector((state) => state?.session.user)
@@ -24,7 +25,7 @@ const EditCommentForm = ({ close, comment }) => {
                 }
             }
             else {
-                alert("Body must not be blank!")
+                // alert("Body must not be blank!")
             }
         }
 

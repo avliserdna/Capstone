@@ -37,7 +37,7 @@ const PostForm = () => {
             const newPost = dispatch(createPost(payload))
 
             if (newPost) {
-                alert("Successfully created new Post!")
+                // alert("Successfully created new Post!")
                 setTitle("")
                 setBody("")
                 history.push('/')

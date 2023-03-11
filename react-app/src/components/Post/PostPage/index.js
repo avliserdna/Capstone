@@ -39,7 +39,7 @@ const PostView = () => {
     const deleteData = (e) => {
         e.preventDefault()
         dispatch(removePost(post?.id))
-        alert("Delete successful!")
+        // alert("Delete successful!")
         history.push('/')
     }
 

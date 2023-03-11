@@ -31,7 +31,7 @@ const EditPost = () => {
         console.log(body)
         console.log(body.length)
         if (body == "<p><br></p>") {
-            alert("Body must not be empty!")
+            // alert("Body must not be empty!")
         }
         else {
 
@@ -43,7 +43,7 @@ const EditPost = () => {
                 const updatedPost = dispatch(editPost(postId, payload))
 
                 if (updatedPost) {
-                    alert("Successfully updated Post!")
+                    // alert("Successfully updated Post!")
                     setTitle("")
                     setBody("")
                     history.push(`/posts/${postId}`)
