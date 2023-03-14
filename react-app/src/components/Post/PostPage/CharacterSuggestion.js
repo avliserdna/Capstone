@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
-import { addTeamSuggestion } from "../../../store/teamsuggestion";
+import { addSuggestion } from "../../../store/teamsuggestion";
 // insert PostDispatch for TeamSuggestions Here
 import Pagination from "./Pagination";
 const CharacterSuggestion = ({ mapId }) => {
@@ -40,7 +40,7 @@ const CharacterSuggestion = ({ mapId }) => {
                 character_ids: suggestion
             }
             console.log(payload)
-            dispatch(addTeamSuggestion(payload))
+            dispatch(addSuggestion(payload))
         }
 
     }
