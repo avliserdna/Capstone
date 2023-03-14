@@ -23,7 +23,8 @@ def add_team_suggestion():
         db.session.add(new_team_suggestion)
 
     db.session.commit()
-    return new_team_suggestion.to_dict()
+    new_user_suggestions = TeamSuggestion.query.filter_by(user_id=current_user.id, map_id=map_id)
+    return {suggestion.id: suggestion.to_dict() for suggestion in new_user_suggestions}
 
 @team_suggestion_routes.route('/<int:id>', methods=["PUT"])
 @login_required
