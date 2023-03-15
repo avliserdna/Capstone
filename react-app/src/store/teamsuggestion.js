@@ -21,6 +21,11 @@ export const getSuggestions = () => async (dispatch) => {
     dispatch(getTeamSuggestion(suggestionData))
 }
 
+export const getMapSuggestions = (mapId) => async (dispatch) => {
+    const response = await fetch(`/api/teamsuggestions/maps/${mapId}`)
+    const suggestionData = await response.json();
+    dispatch(getTeamSuggestion(suggestionData))
+}
 export const getUserSuggestion = (user_id) => async (dispatch) => {
     const response = await fetch(`/api/posts/${user_id}/suggestions`)
     const postSuggestionData = await response.json();
