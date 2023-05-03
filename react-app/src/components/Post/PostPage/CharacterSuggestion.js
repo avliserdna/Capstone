@@ -4,6 +4,7 @@ import { NavLink, useHistory, useParams } from "react-router-dom";
 import { addSuggestion } from "../../../store/teamsuggestion";
 // insert PostDispatch for TeamSuggestions Here
 import Pagination from "./Pagination";
+import './CharacterSuggestion.css'
 const CharacterSuggestion = ({ mapId }) => {
     const dispatch = useDispatch()
     const characters = useSelector((state) => Object.values(state.character))
@@ -12,6 +13,7 @@ const CharacterSuggestion = ({ mapId }) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [suggestion, setSuggestion] = useState([])
     const [charactersPerPage] = useState(25)
+    const [active, setActive] = useState()
     const indexOfLastRecord = currentPage * charactersPerPage;
     const indexOfFirstRecord = indexOfLastRecord - charactersPerPage;
     const currentCharacters = characters.slice(indexOfFirstRecord, indexOfLastRecord)
@@ -19,6 +21,11 @@ const CharacterSuggestion = ({ mapId }) => {
     const userSuggestion = useSelector((state) => Object.values(state.teamSuggestion))
     console.log(mapId, "<=== Character SUggestion Map Id")
     const handleCharacter = (character) => {
+
+        if (suggestion.includes(character.api_id)) {
+            return "duplicate entry"
+        }
+
         if (suggestion.length >= 7) {
             console.log("No more characters!")
         }

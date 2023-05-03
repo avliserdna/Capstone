@@ -6,23 +6,23 @@ def seed_team_suggestions():
     )
 
     team_suggest2 = TeamSuggestion(
-        user_id =3, map_id=1, character_id=1
+        user_id =3, map_id=1, character_id="Pallas"
     )
     team_suggest3 = TeamSuggestion(
-        user_id =3, map_id=1, character_id=2
+        user_id =3, map_id=1, character_id="Adnachiel"
     )
     team_suggest4 = TeamSuggestion(
-        user_id =3, map_id=1, character_id=3
+        user_id =3, map_id=1, character_id="Hung"
     )
     team_suggest5 = TeamSuggestion(
-        user_id =3, map_id=1, character_id=4
+        user_id =3, map_id=1, character_id="Exusiai"
     )
     team_suggest6 = TeamSuggestion(
-        user_id =3, map_id=1, character_id=5
+        user_id =3, map_id=1, character_id="Ifrit"
     )
 
     team_suggest7 = TeamSuggestion(
-        user_id =3, map_id=1, character_id=6
+        user_id =3, map_id=1, character_id="Goldenglow"
     )
 
     db.session.add(team_suggest1)

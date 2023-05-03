@@ -19,6 +19,8 @@ import Comment from "./ViewComment";
 import CharacterSuggestion from "./CharacterSuggestion";
 import { getUserSuggestion } from "../../../store/teamsuggestion";
 import { getSingleMap } from "../../../store/map";
+import { getMapSuggestions } from "../../../store/teamsuggestion";
+
 
 const PostView = () => {
     const dispatch = useDispatch()
@@ -30,7 +32,12 @@ const PostView = () => {
     const comments = useSelector((store) => Object.values(store.comment))
     const postComments = comments.filter((comment) => comment.post_id == postId)
     const reactions = useSelector((store) => store.reaction)
-    const userSuggestion = useSelector((state) => Object.keys(state.teamSuggestion))
+    // const userSuggestion = useSelector((store) => {
+    //     Array(store.suggestion).filter(user_id === user.id)
+    // }
+    // )
+    const postSuggestions = useSelector((store => store.suggestion))
+
     const postMap = useSelector((state) => state.postMap)
     // Pagination Stuff
     useEffect(() => {
@@ -42,7 +49,7 @@ const PostView = () => {
         if (user === undefined || user === null) {
             user = {}
         }
-        dispatch(getUserSuggestion(user.id))
+        dispatch(getMapSuggestions(postMap.map_id))
         dispatch(getSingleMap(postMap.map_id))
 
         // dispatch(ge)
@@ -56,7 +63,8 @@ const PostView = () => {
     }
 
     const hasCharacterSuggestion = () => {
-        return userSuggestion.filter((suggestion) => suggestion.map_id === postMap.map_id).length
+        // return userSuggestion.filter((suggestion) => suggestion.map_id === postMap.map_id).length
+        console.log(postSuggestions)
     }
 
     const handleSubmit = (e) => {

@@ -15,7 +15,7 @@ def team_suggestions():
 # Get Suggestions by Map
 @team_suggestion_routes.route('/maps/<int:id>')
 def get_map_suggestions(id):
-    team_suggestions = TeamSuggestion.query.filter_by(map_id=id)
+    team_suggestions = TeamSuggestion.query.filter_by(map_id=id).all()
     return {team_suggestion.id: team_suggestion.to_dict() for team_suggestion in team_suggestions}
 
 @team_suggestion_routes.route('/', methods=['POST'])
